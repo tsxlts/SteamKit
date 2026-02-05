@@ -1,0 +1,12 @@
+{
+    "train": {
+        "date": "2026-1-27",
+        "from": "天府机场,TIE",
+        "to": "自贡,ZGE",
+        "no_seat": false,
+        "train_code": [],
+
+        "interval": 1000,
+        "notify": "2570096963@qq.com"
+    }
+}

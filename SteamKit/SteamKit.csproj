@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RootNamespace>SteamKit</RootNamespace>
+    <Version>2.0.3.0</Version>
+    <Company>tsxlts</Company>
+    <Authors>tsxlts</Authors>
+    <Title>SteamKit</Title>
+    <Description>Steam市场交易和Steam客户端工具箱</Description>
+    <PackageReleaseNotes>自定义个人链接处理</PackageReleaseNotes>
+    <AssemblyName>SteamKit</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="protobuf-net" Version="3.2.56" />
+    <PackageReference Include="System.IO.Hashing" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+	 <EmbeddedResource Include="Assets\**\*.*" Pack="True" PackagePath="contentFiles\any\any\Assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Assets\SteamDatabase\items_game_cdn.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+	
+  <Target Name="PushNuGetPackage" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
+	<Exec Command="&quot;C:\Program Files\dotnet\dotnet.exe&quot; nuget push &quot;bin\Release\*.nupkg&quot; --source https://nuget.pkg.github.com/tsxlts/index.json --api-key %GITHUB_TOKEN% --skip-duplicate" />
+  </Target>
+
+</Project>

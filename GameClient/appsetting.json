@@ -1,0 +1,23 @@
+{
+    "Steam": {
+        "LoginToken": "76561199818510340||eyAidHlwIjogIkpXVCIsICJhbGciOiAiRWREU0EiIH0.eyAiaXNzIjogInI6MDAxNl8yN0EyRUNBRV9EQzJFNCIsICJzdWIiOiAiNzY1NjExOTk4MTg1MTAzNDAiLCAiYXVkIjogWyAid2ViIiwgIm1vYmlsZSIgXSwgImV4cCI6IDE3NzAzNzE2MDEsICJuYmYiOiAxNzYxNjQ0NzM0LCAiaWF0IjogMTc3MDI4NDczNCwgImp0aSI6ICIwMDBEXzI3QUMyNzcyXzc3RDgwIiwgIm9hdCI6IDE3Njk3NjUxOTEsICJydF9leHAiOiAxNzg3OTI2MzI3LCAicGVyIjogMCwgImlwX3N1YmplY3QiOiAiMTMwLjYxLjEwNS42OSIsICJpcF9jb25maXJtZXIiOiAiMTMwLjYxLjEwNS42OSIgfQ.eXU-qkjohWIaiclFCMbj2HUgRwuscReJ031WRMTthKE1X6JZKtQil1TrY6fIeyvL8u01069-vDQePTsv_-2gAQ"
+    },
+
+  "Proxy": {
+    "SteamCommunity": "https://steamproxy.net",
+    "SteamApi": "https://steamproxy.net/steamapi",
+    "SteamLogin": "https://steamproxy.net/steamlogin",
+    "SteamStore": "https://steamproxy.net/steamstore"
+  },
+  "InspectHashName": "MP7 | Army Recon (Field-Tested)",
+  "InspectWait": 10,
+
+    "CS2InspectLinks": [
+        "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M659340043796386708A43887407775D13989907683083932556",
+        "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M653701477154857399A45257463204D13846775349143688909",
+        "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M730272273354541386A47276897117D5656599075263290308",
+        "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M713383775022477573A47320957697D14862019871419815220",
+        "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M668347320786220885A36136535646D14728675448781622440",
+        "steam://rungame/730/76561202255233023/+csgo_econ_action_preview%20M664969451666628956A30564263282D7992423450745708480"
+    ]
+}

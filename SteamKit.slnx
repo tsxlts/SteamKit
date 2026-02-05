@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="12306/12306.csproj" />
+  <Project Path="GameClient/GameClient.csproj" />
+  <Project Path="HttpMonitor/HttpMonitor.csproj" Id="2b3dc873-fd9a-4eb6-997d-2505ca23a9d7" />
+  <Project Path="SteamKit/SteamKit.csproj" />
+  <Project Path="解绑邮箱/解绑邮箱.csproj" />
+</Solution>

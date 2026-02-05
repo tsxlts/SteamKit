@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "GameClient": {
+      "commandName": "Project"
+    }
+  }
+}
