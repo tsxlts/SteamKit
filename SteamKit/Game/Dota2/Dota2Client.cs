@@ -4,7 +4,6 @@ using SteamKit.Client.Internal.Model;
 using SteamKit.Client.Model;
 using SteamKit.Client.Model.GC;
 using SteamKit.Client.Model.GC.Dota2;
-using SteamKit.Internal;
 
 namespace SteamKit.Game.Dota2
 {
@@ -21,7 +20,6 @@ namespace SteamKit.Game.Dota2
         /// <param name="arg"></param>
         public delegate void InventoryChangedEventHandler(IEnumerable<CSOEconItem> arg);
 
-        private readonly TaskCompletionSource initTask;
         private readonly List<CSOEconItem> inventories;
 
         private readonly ConcurrentDictionary<ESOMsg, InventoryChangedEventHandler> itemHandleCallbasks;
@@ -46,7 +44,6 @@ namespace SteamKit.Game.Dota2
         /// </param>
         public Dota2Client(uint version, uint buildId) : base(Game.AppId.Dota2, version, buildId)
         {
-            initTask = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             inventories = new List<CSOEconItem>();
 
             itemHandleCallbasks = new ConcurrentDictionary<ESOMsg, InventoryChangedEventHandler>();
@@ -63,7 +60,6 @@ namespace SteamKit.Game.Dota2
                     Error = null
                 });
 
-                initTask.TrySetResult();
                 return Task.CompletedTask;
             });
 
@@ -173,7 +169,7 @@ namespace SteamKit.Game.Dota2
         /// <returns></returns>
         public override async Task WaitInitAsync(CancellationToken cancellationToken = default)
         {
-            await initTask.WaitAsync(cancellationToken).ConfigureAwait(false);
+            await base.WaitInitAsync(cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>

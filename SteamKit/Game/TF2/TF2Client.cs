@@ -4,7 +4,6 @@ using SteamKit.Client.Internal.Model;
 using SteamKit.Client.Model;
 using SteamKit.Client.Model.GC;
 using SteamKit.Client.Model.GC.TF2;
-using SteamKit.Internal;
 
 namespace SteamKit.Game.TF2
 {
@@ -21,7 +20,6 @@ namespace SteamKit.Game.TF2
         /// <param name="arg"></param>
         public delegate void InventoryChangedEventHandler(IEnumerable<CSOEconItem> arg);
 
-        private readonly TaskCompletionSource initTask;
         private readonly List<CSOEconItem> inventories;
 
         private readonly ConcurrentDictionary<ESOMsg, InventoryChangedEventHandler> itemHandleCallbasks;
@@ -43,7 +41,6 @@ namespace SteamKit.Game.TF2
         /// </param>
         public TF2Client(uint version, uint buildId) : base(Game.AppId.TF2, version, buildId)
         {
-            initTask = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             inventories = new List<CSOEconItem>();
 
             itemHandleCallbasks = new ConcurrentDictionary<ESOMsg, InventoryChangedEventHandler>();
@@ -60,7 +57,6 @@ namespace SteamKit.Game.TF2
                     Error = null
                 });
 
-                initTask.TrySetResult();
                 return Task.CompletedTask;
             });
             RegistGCCallback(EGCBaseClientMsg.k_EMsgGCClientGoodbye, (sender, response) =>
@@ -160,7 +156,7 @@ namespace SteamKit.Game.TF2
         /// <returns></returns>
         public override async Task WaitInitAsync(CancellationToken cancellationToken = default)
         {
-            await initTask.WaitAsync(cancellationToken).ConfigureAwait(false);
+            await base.WaitInitAsync(cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>

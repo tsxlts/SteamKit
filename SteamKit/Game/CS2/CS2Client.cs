@@ -29,7 +29,6 @@ namespace SteamKit.Game.CS2
         private const int CSOEconItemTypeId = 1;
         private const int CSOAccountItemPersonalStoreTypeId = 6;
 
-        private readonly TaskCompletionSource initTask;
         private readonly List<Inventory> inventories;
         private readonly AccountItemPersonalStore personalStore;
         private readonly ConcurrentDictionary<ESOMsg, InventoryChangedEventHandler> itemHandleCallbasks;
@@ -59,7 +58,6 @@ namespace SteamKit.Game.CS2
         /// </param>
         public CS2Client(uint version, uint buildId) : base(Game.AppId.CS2, version, buildId)
         {
-            initTask = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             inventories = new List<Inventory>();
             personalStore = new AccountItemPersonalStore();
 
@@ -107,7 +105,6 @@ namespace SteamKit.Game.CS2
                 // var g2 = ProtoBuf.Serializer.Deserialize<CMsgGCCStrike15_v2_MatchmakingGC2ClientHello>(new MemoryStream(msg.Body.game_data2));
                 HandleClientWelcome(msg.Body);
 
-                initTask.TrySetResult();
                 return Task.CompletedTask;
             });
 
@@ -352,7 +349,7 @@ namespace SteamKit.Game.CS2
         /// <returns></returns>
         public override async Task WaitInitAsync(CancellationToken cancellationToken = default)
         {
-            await initTask.WaitAsync(cancellationToken).ConfigureAwait(false);
+            await base.WaitInitAsync(cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
