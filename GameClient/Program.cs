@@ -15,6 +15,7 @@ using SteamKit.Client.Model.GC.CS2;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Client.Server;
 using SteamKit.Database.CS2;
+using SteamKit.Factory;
 using SteamKit.Game;
 using SteamKit.Game.CS2;
 using SteamKit.Game.Dota2;
@@ -126,13 +127,19 @@ namespace GameClient
 
                         await client.ConnectAsync();
 
-                        var authResult = await client.AuthTokenViaCredentialsAsync("ttsaw04387", "jxuj96014X", null,
+                        var authResult = await client.AuthTokenViaCredentialsAsync("ryvgt41502", "hgsj80861F", null,
                             EAuthTokenPlatformType.k_EAuthTokenPlatformType_SteamClient,
                             EAuthTokenAppType.k_EAuthTokenAppType_Unknown, 2);
-                        Console.WriteLine("请输入令牌码");
-                        var code = Console.ReadLine();
-                        var confirmLogin = await authResult.ConfirmLoginAsync(EAuthSessionGuardType.k_EAuthSessionGuardType_DeviceCode, code);
-                        await Task.Delay(1000);
+                        Console.WriteLine($"{JsonConvert.SerializeObject(authResult, Formatting.Indented)}");
+
+                        if (authResult.AllowedConfirmations.Any(c => c.confirmation_type == EAuthSessionGuardType.k_EAuthSessionGuardType_DeviceCode))
+                        {
+                            Console.WriteLine("请输入令牌码");
+                            var code = Console.ReadLine();
+                            var confirmLogin = await authResult.ConfirmLoginAsync(EAuthSessionGuardType.k_EAuthSessionGuardType_DeviceCode, code);
+                            await Task.Delay(1000);
+                        }
+
                         var tokenResult = await authResult.PollingAuthTokenAsync();
                         Console.WriteLine($"{JsonConvert.SerializeObject(tokenResult, Formatting.Indented)}");
 
