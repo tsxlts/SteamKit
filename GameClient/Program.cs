@@ -126,7 +126,7 @@ namespace GameClient
 
                         await client.ConnectAsync();
 
-                        var authResult = await client.AuthTokenViaCredentialsAsync("ddpc_2", "HNKJDX666@.", null,
+                        var authResult = await client.AuthTokenViaCredentialsAsync("ttsaw04387", "jxuj96014X", null,
                             EAuthTokenPlatformType.k_EAuthTokenPlatformType_SteamClient,
                             EAuthTokenAppType.k_EAuthTokenAppType_Unknown, 2);
                         Console.WriteLine("请输入令牌码");
@@ -139,6 +139,7 @@ namespace GameClient
                         var logonResponse = await client.LogonAsync(authResult.SteamId, tokenResult.RefreshToken!);
                         Console.WriteLine($"{JsonConvert.SerializeObject(logonResponse, Formatting.Indented)}");
 
+                        Console.WriteLine($"End ...");
                         await Task.Delay(5000);
                     }
                     break;
