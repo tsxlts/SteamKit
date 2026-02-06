@@ -449,9 +449,19 @@ namespace SteamKit.Game
         /// <summary>
         /// 游戏已退出
         /// </summary>
-        protected virtual void GameExited()
+        protected void GameExited()
         {
             this.gameLoaded = false;
+
+            ExitGame();
+        }
+
+        /// <summary>
+        /// 游戏已退出
+        /// </summary>
+        protected virtual void ExitGame()
+        {
+
         }
 
         /// <summary>
