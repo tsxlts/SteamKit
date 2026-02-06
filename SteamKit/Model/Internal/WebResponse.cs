@@ -51,7 +51,7 @@ namespace SteamKit.Model.Internal
                     {
                         var logger = LoggerBuilder.GetLogger();
                         logger?.LogException(ex, "WebResponse Deserialize Body Failed");
-                        logger?.LogDebug("WebResponse Deserialize Body({0}) Failed, Response Body:{\n}{1}", typeof(T), Response);
+                        logger?.LogDebug("WebResponse Deserialize Body({0}) Failed, Response Body:\n{1}", typeof(T), Response);
 
                         throw;
                     }
