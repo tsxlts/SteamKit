@@ -773,8 +773,8 @@ namespace SteamKit.Game.CS2
         /// 印花旋转角度
         /// <para>-180 到 180</para>
         /// </param>
-        /// <param name="stickerOffsetX">印花X坐标相对槽位偏移量</param>
-        /// <param name="stickerOffsetY">印花Y坐标相对槽位偏移量</param>
+        /// <param name="stickerOffsetX">印花X坐标</param>
+        /// <param name="stickerOffsetY">印花Y坐标</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
         public async Task<CMsgGCItemCustomizationNotification?> ApplyStickerAsync(ulong itemId, ulong stickerItemId, uint stickerSlot, float stickerWear, float stickerRotation, float stickerOffsetX, float stickerOffsetY, CancellationToken cancellationToken = default)
@@ -863,6 +863,44 @@ namespace SteamKit.Game.CS2
                 applyStickerRequest.Body.sticker_wear_target = 1;
 
                 await SendAsync(AppId, applyStickerRequest, cancellationToken).ConfigureAwait(false);
+            }
+        }
+
+        /// <summary>
+        /// 应用挂件
+        /// </summary>
+        /// <param name="itemId">需要应用挂件的资产Id</param>
+        /// <param name="keychainItemId">挂件资产Id</param>
+        /// <param name="keychainOffsetX">挂件X坐标</param>
+        /// <param name="keychainOffsetY">挂件Y坐标</param>
+        /// <param name="keychainOffsetZ">挂件Z坐标</param>
+        /// <param name="cancellationToken">CancellationToken</param>
+        /// <returns></returns>
+        public async Task<CMsgGCItemCustomizationNotification?> ApplyKeychainAsync(ulong itemId, ulong keychainItemId, float keychainOffsetX, float keychainOffsetY, float keychainOffsetZ, CancellationToken cancellationToken = default)
+        {
+            var msgType = EGCItemMsg.k_EMsgGCApplySticker;
+            var taskMsgType = EGCItemCustomizationNotification.k_EGCItemCustomizationNotification_ApplyKeychain;
+            var applyKeychainLocker = locks[msgType];
+
+            using (await applyKeychainLocker.LockAsync(cancellationToken))
+            {
+                var applyKeychainRequest = new GCClientProtoBufMsg<CMsgApplySticker>((uint)msgType, 64);
+                applyKeychainRequest.Body.item_item_id = itemId;
+                applyKeychainRequest.Body.sticker_item_id = keychainItemId;
+                applyKeychainRequest.Body.sticker_offset_x = keychainOffsetX;
+                applyKeychainRequest.Body.sticker_offset_y = keychainOffsetY;
+                applyKeychainRequest.Body.sticker_offset_z = keychainOffsetZ;
+
+                var jobKey = new JobKey(EGCItemMsg.k_EMsgGCItemCustomizationNotification, (uint)taskMsgType);
+                using (var taskReleaser = asyncJobs.AddOrUpdate<CMsgGCItemCustomizationNotification>(jobKey, cancellationToken))
+                {
+                    var task = taskReleaser.Job!;
+
+                    await SendAsync(AppId, applyKeychainRequest, cancellationToken).ConfigureAwait(false);
+
+                    var resultData = await task.ConfigureAwait(false);
+                    return resultData;
+                }
             }
         }
 
