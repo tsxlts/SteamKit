@@ -36,7 +36,7 @@ namespace SteamKit.Model.Internal
 
                 byte[] buffer = new byte[stream.Length];
                 stream.Seek(0, SeekOrigin.Begin);
-                stream.Read(buffer, 0, buffer.Length);
+                stream.ReadExactly(buffer, 0, buffer.Length);
                 MediaTypeHeaderValue streamContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
                 Response = response.Content.Headers.ContentType switch
                 {
