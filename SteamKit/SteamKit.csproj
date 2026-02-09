@@ -26,12 +26,6 @@
   <ItemGroup>
 	 <EmbeddedResource Include="Assets\**\*.*" Pack="True" PackagePath="contentFiles\any\any\Assets\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Assets\SteamDatabase\items_game_cdn.txt">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
 	
   <Target Name="PushNuGetPackage" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
 	<Exec Command="&quot;C:\Program Files\dotnet\dotnet.exe&quot; nuget push &quot;bin\Release\*.nupkg&quot; --source https://nuget.pkg.github.com/tsxlts/index.json --api-key %GITHUB_TOKEN% --skip-duplicate" />

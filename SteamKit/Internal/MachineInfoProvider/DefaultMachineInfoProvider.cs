@@ -1,6 +1,7 @@
 ﻿
 using System.Net.NetworkInformation;
 using System.Text;
+using SteamKit.Factory;
 
 namespace SteamKit.Internal.Provider
 {

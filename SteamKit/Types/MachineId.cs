@@ -1,6 +1,6 @@
 ﻿using SteamKit.Internal;
 
-namespace SteamKit
+namespace SteamKit.Types
 {
     /// <summary>
     /// MachineId

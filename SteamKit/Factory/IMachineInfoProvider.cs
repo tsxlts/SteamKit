@@ -1,5 +1,4 @@
-﻿
-namespace SteamKit
+﻿namespace SteamKit.Factory
 {
     /// <summary>
     /// MachineInfoProvider

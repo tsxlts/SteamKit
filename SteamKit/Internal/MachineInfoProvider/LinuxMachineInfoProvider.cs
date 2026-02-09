@@ -1,6 +1,7 @@
 ﻿
 using System.Runtime.Versioning;
 using System.Text;
+using SteamKit.Factory;
 
 namespace SteamKit.Internal.Provider
 {

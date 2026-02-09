@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using SteamKit.Client.Internal;
 using SteamKit.Client.Internal.Msg;
 using SteamKit.Client.Model;
+using SteamKit.Types;
 
 namespace SteamKit.Client.Hanlders
 {

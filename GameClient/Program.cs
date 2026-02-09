@@ -15,11 +15,11 @@ using SteamKit.Client.Model.GC.CS2;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Client.Server;
 using SteamKit.Database.CS2;
-using SteamKit.Factory;
 using SteamKit.Game;
 using SteamKit.Game.CS2;
 using SteamKit.Game.Dota2;
 using SteamKit.Game.TF2;
+using SteamKit.Types;
 using SteamKit.WebClient;
 using static SteamKit.SteamBulider;
 

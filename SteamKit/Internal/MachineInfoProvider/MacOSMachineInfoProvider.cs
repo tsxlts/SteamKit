@@ -1,6 +1,7 @@
 ﻿
 using System.Runtime.Versioning;
 using System.Text;
+using SteamKit.Factory;
 using static SteamKit.Internal.Provider.CoreFoundation;
 using static SteamKit.Internal.Provider.DiskArbitration;
 using static SteamKit.Internal.Provider.IOKit;

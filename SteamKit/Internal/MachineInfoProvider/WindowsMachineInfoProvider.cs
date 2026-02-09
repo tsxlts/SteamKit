@@ -2,6 +2,7 @@
 using System.Runtime.Versioning;
 using System.Text;
 using Microsoft.Win32;
+using SteamKit.Factory;
 
 namespace SteamKit.Internal.Provider
 {
