@@ -2,12 +2,12 @@
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SteamKit.Builder;
 using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Model.Internal;
-using static SteamKit.Internal.Utils;
 using static SteamKit.Builder.ProxyBulider;
-using SteamKit.Builder;
+using static SteamKit.Internal.Utils;
 
 namespace SteamKit.Api
 {

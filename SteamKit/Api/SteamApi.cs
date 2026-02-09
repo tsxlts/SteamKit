@@ -8,14 +8,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using SteamKit.Builder;
 using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Model.Internal;
-using static SteamKit.Internal.Utils;
-using static SteamKit.Model.QueryInventoryHistoryResponse;
 using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.Enums;
-using SteamKit.Builder;
+using static SteamKit.Internal.Utils;
+using static SteamKit.Model.QueryInventoryHistoryResponse;
 
 namespace SteamKit.Api
 {

@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using SteamKit.Api;
 using SteamKit.Client.Model;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Factory;
 using SteamKit.Model;
-using SteamKit.Api;
 using static SteamKit.Enums;
 
 namespace SteamKit.WebClient

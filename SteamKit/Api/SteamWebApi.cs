@@ -7,9 +7,9 @@ using SteamKit.Client.Model.Proto;
 using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Model.Internal;
-using static SteamKit.Internal.Utils;
 using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.Enums;
+using static SteamKit.Internal.Utils;
 
 namespace SteamKit.Api
 {

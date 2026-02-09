@@ -3,8 +3,8 @@ using System.Text;
 using SteamKit.Client.Model;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Model;
-using static SteamKit.Internal.Utils;
 using static SteamKit.Builder.ProxyBulider;
+using static SteamKit.Internal.Utils;
 
 namespace SteamKit.Api
 {

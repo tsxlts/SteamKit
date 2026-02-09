@@ -2,10 +2,10 @@
 using System.Net;
 using SteamKit.Api;
 using SteamKit.Model;
-using static SteamKit.Internal.Utils;
-using static SteamKit.Model.QueryInventoryHistoryResponse;
 using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.Enums;
+using static SteamKit.Internal.Utils;
+using static SteamKit.Model.QueryInventoryHistoryResponse;
 
 namespace SteamKit.WebClient
 {

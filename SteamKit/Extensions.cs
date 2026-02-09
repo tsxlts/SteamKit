@@ -3,9 +3,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using SteamKit.Api;
 using SteamKit.Internal;
 using SteamKit.Model;
-using SteamKit.Api;
 using static SteamKit.Enums;
 
 namespace SteamKit
