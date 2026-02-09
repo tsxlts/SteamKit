@@ -1,7 +1,7 @@
 ﻿using SteamKit.Model;
 using SteamKit.Api;
 using static SteamKit.Internal.Utils;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.SteamEnum;
 
 namespace SteamKit.WebClient

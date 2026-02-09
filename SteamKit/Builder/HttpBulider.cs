@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using SteamKit.Factory;
 
-namespace SteamKit
+namespace SteamKit.Builder
 {
     /// <summary>
     /// HttpBulider

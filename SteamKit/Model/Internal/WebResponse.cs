@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using SteamKit.Builder;
 using SteamKit.Internal;
 
 namespace SteamKit.Model.Internal

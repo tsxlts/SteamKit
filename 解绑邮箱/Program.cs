@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
-using SteamKit;
 using SteamKit.Client.Model;
 using SteamKit.Client.Model.GC.CS2;
 using SteamKit.Game.CS2;
@@ -9,8 +8,9 @@ using SteamKit.Model;
 using SteamKit.Api;
 using SteamKit.WebClient;
 using 解绑邮箱.Factory;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.SteamEnum;
+using SteamKit.Builder;
 
 namespace 解绑邮箱
 {
@@ -23,7 +23,7 @@ namespace 解绑邮箱
 
         static async Task Main(string[] args)
         {
-            SteamBulider.WithProxy((s, m) =>
+            ProxyBulider.WithProxy((s, m) =>
             {
                 Proxy proxy = Proxy.Instance
                 .WithSteamCommunity(communityDomain)

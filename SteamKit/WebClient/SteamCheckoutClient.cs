@@ -1,5 +1,5 @@
 ﻿using SteamKit.Api;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.SteamEnum;
 
 namespace SteamKit.WebClient

@@ -13,8 +13,9 @@ using SteamKit.Model;
 using SteamKit.Model.Internal;
 using static SteamKit.Internal.Utils;
 using static SteamKit.Model.QueryInventoryHistoryResponse;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.SteamEnum;
+using SteamKit.Builder;
 
 namespace SteamKit.Api
 {
@@ -485,7 +486,7 @@ namespace SteamKit.Api
 
             IDictionary<string, string> headers = new Dictionary<string, string>
             {
-                { "Referer",$"{SteamBulider.DefaultSteamCommunity}/profiles/{steamId}/edit/info" }
+                { "Referer",$"{ProxyBulider.DefaultSteamCommunity}/profiles/{steamId}/edit/info" }
             };
 
             headers = SetDefaultHeaders(proxy, headers);

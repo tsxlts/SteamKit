@@ -1,6 +1,6 @@
 ﻿using SteamKit.Factory;
 
-namespace SteamKit
+namespace SteamKit.Builder
 {
     /// <summary>
     /// LoggerBuilder

@@ -22,7 +22,7 @@ using SteamKit.Game.Dota2;
 using SteamKit.Game.TF2;
 using SteamKit.Types;
 using SteamKit.WebClient;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
 
 namespace GameClient
 {

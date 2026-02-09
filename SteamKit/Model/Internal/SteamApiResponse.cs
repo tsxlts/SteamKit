@@ -2,6 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 using ProtoBuf;
+using SteamKit.Builder;
 
 namespace SteamKit.Model.Internal
 {

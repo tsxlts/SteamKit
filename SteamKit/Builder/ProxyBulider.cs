@@ -3,12 +3,12 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace SteamKit
+namespace SteamKit.Builder
 {
     /// <summary>
     /// SteamBulider
     /// </summary>
-    public class SteamBulider
+    public class ProxyBulider
     {
         /// <summary>
         /// 代理工厂

@@ -2,7 +2,7 @@
 using System.Text;
 using SteamKit.Attributes;
 using SteamKit.Model;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
 using static SteamKit.SteamEnum;
 
 namespace SteamKit.Internal

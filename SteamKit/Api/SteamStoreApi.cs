@@ -6,7 +6,8 @@ using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Model.Internal;
 using static SteamKit.Internal.Utils;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
+using SteamKit.Builder;
 
 namespace SteamKit.Api
 {
@@ -161,7 +162,7 @@ namespace SteamKit.Api
             Uri uri = new Uri($"{proxy.SteamStore}/phone/validate");
             IDictionary<string, string> headers = new Dictionary<string, string>
             {
-                { "Referer",$"{SteamBulider.DefaultSteamStore}/phone/add" }
+                { "Referer",$"{ProxyBulider.DefaultSteamStore}/phone/add" }
             };
             headers = SetDefaultHeaders(proxy, headers);
             var @params = new FormUrlEncodedContent(new Dictionary<string, string>
@@ -195,7 +196,7 @@ namespace SteamKit.Api
             Uri uri = new Uri($"{proxy.SteamStore}/phone/add_ajaxop");
             IDictionary<string, string> headers = new Dictionary<string, string>
             {
-                { "Referer",$"{SteamBulider.DefaultSteamStore}/phone/add" }
+                { "Referer",$"{ProxyBulider.DefaultSteamStore}/phone/add" }
             };
             headers = SetDefaultHeaders(proxy, headers);
 

@@ -4,7 +4,8 @@ using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Model.Internal;
 using static SteamKit.Internal.Utils;
-using static SteamKit.SteamBulider;
+using static SteamKit.Builder.ProxyBulider;
+using SteamKit.Builder;
 
 namespace SteamKit.Api
 {
@@ -71,7 +72,7 @@ namespace SteamKit.Api
 
             IDictionary<string, string> headers = new Dictionary<string, string>
             {
-                { "Referer",$"{SteamBulider.DefaultSteamHelp}/zh-cn/wizard/HelpTradeRestore" }
+                { "Referer",$"{ProxyBulider.DefaultSteamHelp}/zh-cn/wizard/HelpTradeRestore" }
             };
 
             headers = SetDefaultHeaders(proxy, headers);
