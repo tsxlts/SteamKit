@@ -962,5 +962,41 @@ namespace SteamKit.Client
                 }
             }
         }
+
+        /// <summary>
+        /// 登录方式
+        /// </summary>
+        private enum LoginType
+        {
+            /// <summary>
+            /// 匿名登录
+            /// </summary>
+            Anonymous = 0,
+
+            /// <summary>
+            /// 用户帐号密码登录
+            /// </summary>
+            UserName = 101,
+
+            /// <summary>
+            /// 扫码授权登录
+            /// </summary>
+            QrCode = 102,
+
+            /// <summary>
+            /// RefreshToken登录
+            /// </summary>
+            RefreshToken = 202,
+
+            /// <summary>
+            /// 网页登录Token登录
+            /// </summary>
+            WebToken = 301,
+
+            /// <summary>
+            /// 游戏服务器登录
+            /// </summary>
+            GameServer = 901
+        }
     }
 }

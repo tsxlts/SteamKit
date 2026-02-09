@@ -536,6 +536,161 @@ namespace SteamKit
         }
 
         /// <summary>
+        /// Steam令牌方案
+        /// </summary>
+        public enum SteamGuardScheme
+        {
+            /// <summary>
+            /// 无
+            /// </summary>
+            None = 0,
+
+            /// <summary>
+            /// 邮箱令牌验证器
+            /// </summary>
+            Email = 1,
+
+            /// <summary>
+            /// 手机令牌验证器
+            /// </summary>
+            Device = 2
+        }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public enum AddAuthenticatorStatus
+        {
+            /// <summary>
+            /// 等待手机验证码确认
+            /// </summary>
+            AwaitingFinalization = 1,
+
+            /// <summary>
+            /// 需要设置手机号
+            /// </summary>
+            MustProvidePhoneNumber = 2,
+
+            /// <summary>
+            /// 已经绑定验证器
+            /// </summary>
+            AuthenticatorPresent = 29
+        }
+
+        /// <summary>
+        /// 验证方式
+        /// </summary>
+        public enum AddAuthenticatorConfirmType
+        {
+            /// <summary>
+            /// 短信验证码
+            /// </summary>
+            SmsCode = 1,
+
+            /// <summary>
+            /// 邮箱验证码
+            /// </summary>
+            EmailCode = 3
+        }
+
+        /// <summary>
+        /// 资产属性值类型
+        /// </summary>
+        public enum AssetPropertyType
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            Unknown = 0,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            Float = 1,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            Int = 2,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            String = 3,
+
+            /// <summary>
+            /// 
+            /// </summary>
+            MAX = 4,
+        }
+
+        /// <summary>
+        /// 待确认信息类型
+        /// </summary>
+        public enum ConfirmationType
+        {
+            /// <summary>
+            /// Invalid
+            /// </summary>
+            Invalid = 0,
+
+            /// <summary>
+            /// Generic
+            /// <para>通用的确认信息</para>
+            /// </summary>
+            Generic = 1,
+
+            /// <summary>
+            /// Trade
+            /// <para>交易</para>
+            /// </summary>
+            Trade = 2,
+
+            /// <summary>
+            /// Market Listing
+            /// <para>市场上架</para>
+            /// </summary>
+            MarketListing = 3,
+
+            /// <summary>
+            /// FeatureOptOut
+            /// </summary>
+            FeatureOptOut = 4,
+
+            /// <summary>
+            /// Change Phone Number
+            /// <para>更改手机号码</para>
+            /// </summary>
+            ChangePhoneNumber = 5,
+
+            /// <summary>
+            /// Account Recovery
+            /// <para>帐户恢复</para>
+            /// 修改密码
+            /// 修改邮箱等
+            /// </summary>
+            AccountRecovery = 6,
+
+            /// <summary>
+            /// Register API Key
+            /// <para>注册 API 密钥</para>
+            /// </summary>
+            RegisterApiKey = 9,
+
+            /// <summary>
+            /// Join Family
+            /// <para>加入家庭</para>
+            /// </summary>
+            JoinFamily = 11,
+
+            /// <summary>
+            /// Account Security
+            /// <para>帐户安全</para>
+            /// </summary>
+            AccountSecurity = 12
+        }
+
+        /// <summary>
         /// 好友关系
         /// </summary>
         public enum FriendRelationship
@@ -657,166 +812,6 @@ namespace SteamKit
             /// 
             /// </summary>
             私密 = 2,
-        }
-
-        /// <summary>
-        /// 待确认信息类型
-        /// </summary>
-        public enum ConfirmationType
-        {
-            /// <summary>
-            /// Invalid
-            /// </summary>
-            Invalid = 0,
-
-            /// <summary>
-            /// Generic
-            /// <para>通用的确认信息</para>
-            /// </summary>
-            Generic = 1,
-
-            /// <summary>
-            /// Trade
-            /// <para>交易</para>
-            /// </summary>
-            Trade = 2,
-
-            /// <summary>
-            /// Market Listing
-            /// <para>市场上架</para>
-            /// </summary>
-            MarketListing = 3,
-
-            /// <summary>
-            /// FeatureOptOut
-            /// </summary>
-            FeatureOptOut = 4,
-
-            /// <summary>
-            /// Change Phone Number
-            /// <para>更改手机号码</para>
-            /// </summary>
-            ChangePhoneNumber = 5,
-
-            /// <summary>
-            /// Account Recovery
-            /// <para>帐户恢复</para>
-            /// 修改密码
-            /// 修改邮箱等
-            /// </summary>
-            AccountRecovery = 6,
-
-            /// <summary>
-            /// Register API Key
-            /// <para>注册 API 密钥</para>
-            /// </summary>
-            RegisterApiKey = 9,
-
-            /// <summary>
-            /// Join Family
-            /// <para>加入家庭</para>
-            /// </summary>
-            JoinFamily = 11,
-
-            /// <summary>
-            /// Account Security
-            /// <para>帐户安全</para>
-            /// </summary>
-            AccountSecurity = 12
-        }
-
-        /// <summary>
-        /// 登录方式
-        /// </summary>
-        public enum LoginType
-        {
-            /// <summary>
-            /// 匿名登录
-            /// </summary>
-            Anonymous = 0,
-
-            /// <summary>
-            /// 用户帐号密码登录
-            /// </summary>
-            UserName = 101,
-
-            /// <summary>
-            /// 扫码授权登录
-            /// </summary>
-            QrCode = 102,
-
-            /// <summary>
-            /// RefreshToken登录
-            /// </summary>
-            RefreshToken = 202,
-
-            /// <summary>
-            /// 网页登录Token登录
-            /// </summary>
-            WebToken = 301,
-
-            /// <summary>
-            /// 游戏服务器登录
-            /// </summary>
-            GameServer = 901
-        }
-
-        /// <summary>
-        /// 状态
-        /// </summary>
-        public enum AddAuthenticatorStatus
-        {
-            /// <summary>
-            /// 等待手机验证码确认
-            /// </summary>
-            AwaitingFinalization = 1,
-
-            /// <summary>
-            /// 需要设置手机号
-            /// </summary>
-            MustProvidePhoneNumber = 2,
-
-            /// <summary>
-            /// 已经绑定验证器
-            /// </summary>
-            AuthenticatorPresent = 29
-        }
-
-        /// <summary>
-        /// 验证方式
-        /// </summary>
-        public enum AddAuthenticatorConfirmType
-        {
-            /// <summary>
-            /// 短信验证码
-            /// </summary>
-            SmsCode = 1,
-
-            /// <summary>
-            /// 邮箱验证码
-            /// </summary>
-            EmailCode = 3
-        }
-
-        /// <summary>
-        /// Steam令牌方案
-        /// </summary>
-        public enum SteamGuardScheme
-        {
-            /// <summary>
-            /// 无
-            /// </summary>
-            None = 0,
-
-            /// <summary>
-            /// 邮箱令牌验证器
-            /// </summary>
-            Email = 1,
-
-            /// <summary>
-            /// 手机令牌验证器
-            /// </summary>
-            Device = 2
         }
 
         /// <summary>
@@ -999,37 +994,6 @@ namespace SteamKit
             /// 
             /// </summary>
             TradeReversal = 29,
-        }
-
-        /// <summary>
-        /// 资产属性值类型
-        /// </summary>
-        public enum AssetPropertyType
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            Unknown = 0,
-
-            /// <summary>
-            /// 
-            /// </summary>
-            Float = 1,
-
-            /// <summary>
-            /// 
-            /// </summary>
-            Int = 2,
-
-            /// <summary>
-            /// 
-            /// </summary>
-            String = 3,
-
-            /// <summary>
-            /// 
-            /// </summary>
-            MAX = 4,
         }
     }
 }
