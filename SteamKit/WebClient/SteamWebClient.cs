@@ -4,6 +4,7 @@ using SteamKit.Client.Model;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Factory;
 using SteamKit.Model;
+using SteamKit.Api;
 using static SteamKit.SteamEnum;
 
 namespace SteamKit.WebClient

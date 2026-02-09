@@ -1,4 +1,5 @@
 ﻿using SteamKit.Model;
+using SteamKit.Api;
 using static SteamKit.Internal.Utils;
 using static SteamKit.SteamBulider;
 using static SteamKit.SteamEnum;

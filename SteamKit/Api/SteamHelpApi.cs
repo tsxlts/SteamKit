@@ -6,7 +6,7 @@ using SteamKit.Model.Internal;
 using static SteamKit.Internal.Utils;
 using static SteamKit.SteamBulider;
 
-namespace SteamKit
+namespace SteamKit.Api
 {
     /// <summary>
     /// SteamApi

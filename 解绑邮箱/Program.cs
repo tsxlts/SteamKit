@@ -6,6 +6,7 @@ using SteamKit.Client.Model;
 using SteamKit.Client.Model.GC.CS2;
 using SteamKit.Game.CS2;
 using SteamKit.Model;
+using SteamKit.Api;
 using SteamKit.WebClient;
 using 解绑邮箱.Factory;
 using static SteamKit.SteamBulider;

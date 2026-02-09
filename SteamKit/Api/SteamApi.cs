@@ -16,7 +16,7 @@ using static SteamKit.Model.QueryInventoryHistoryResponse;
 using static SteamKit.SteamBulider;
 using static SteamKit.SteamEnum;
 
-namespace SteamKit
+namespace SteamKit.Api
 {
     /// <summary>
     /// SteamApi

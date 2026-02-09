@@ -8,7 +8,7 @@ using SteamKit.Model.Internal;
 using static SteamKit.Internal.Utils;
 using static SteamKit.SteamBulider;
 
-namespace SteamKit
+namespace SteamKit.Api
 {
     /// <summary>
     /// SteamApi
@@ -16,7 +16,7 @@ namespace SteamKit
     public partial class SteamStoreApi
     {
         /// <summary>
-        /// 提交批准交易请求
+        /// 完成商店购买
         /// </summary>
         /// <param name="appId">AppId 游戏Id</param>
         /// <param name="orderId">订单号</param>

@@ -1,4 +1,5 @@
-﻿using static SteamKit.SteamBulider;
+﻿using SteamKit.Api;
+using static SteamKit.SteamBulider;
 using static SteamKit.SteamEnum;
 
 namespace SteamKit.WebClient

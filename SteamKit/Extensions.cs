@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using SteamKit.Internal;
 using SteamKit.Model;
+using SteamKit.Api;
 using static SteamKit.SteamEnum;
 
 namespace SteamKit

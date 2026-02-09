@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Security.Cryptography;
+using SteamKit.Api;
 using SteamKit.Client.Internal.Model;
 using SteamKit.Client.Model;
 

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using QRCoder;
 using SteamKit;
+using SteamKit.Api;
 using SteamKit.Client;
 using SteamKit.Client.Hanlders;
 using SteamKit.Client.Internal.Msg;

@@ -1,5 +1,6 @@
 ﻿
 using System.Net;
+using SteamKit.Api;
 using SteamKit.Model;
 using static SteamKit.Internal.Utils;
 using static SteamKit.Model.QueryInventoryHistoryResponse;

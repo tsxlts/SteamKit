@@ -4,7 +4,7 @@ using SteamKit.Model;
 using static SteamKit.SteamBulider;
 using static SteamKit.SteamEnum;
 
-namespace SteamKit
+namespace SteamKit.Api
 {
     /// <summary>
     /// Steam验证器

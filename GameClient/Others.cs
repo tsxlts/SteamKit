@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
 using SteamKit;
+using SteamKit.Api;
 
 namespace GameClient
 {

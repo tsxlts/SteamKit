@@ -12,7 +12,7 @@ using static SteamKit.SteamBulider;
 using static SteamKit.SteamBulider.Regexs;
 using static SteamKit.SteamEnum;
 
-namespace SteamKit
+namespace SteamKit.Api
 {
     /// <summary>
     /// 

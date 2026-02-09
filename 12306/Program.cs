@@ -3,6 +3,7 @@ using _12306.Models;
 using Microsoft.Extensions.Configuration;
 using MimeKit.Text;
 using SteamKit;
+using SteamKit.Api;
 using Vdaima.Utils.Email;
 
 namespace _12306

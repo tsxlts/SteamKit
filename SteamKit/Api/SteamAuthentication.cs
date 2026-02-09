@@ -6,7 +6,7 @@ using SteamKit.Model;
 using static SteamKit.Internal.Utils;
 using static SteamKit.SteamBulider;
 
-namespace SteamKit
+namespace SteamKit.Api
 {
     /// <summary>
     /// Steam登录授权
