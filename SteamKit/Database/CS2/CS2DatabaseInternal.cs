@@ -3,7 +3,7 @@ using System.Reflection;
 using SteamKit.Api;
 using SteamKit.Factory;
 using SteamKit.Internal;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Database.CS2
 {

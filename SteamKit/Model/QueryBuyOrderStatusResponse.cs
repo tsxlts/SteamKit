@@ -83,7 +83,7 @@ namespace SteamKit.Model
         /// 货币类型
         /// </summary>
         [JsonProperty("currency")]
-        public SteamEnum.Currency currency { get; set; }
+        public Enums.Currency currency { get; set; }
 
         /// <summary>
         /// 订单金额

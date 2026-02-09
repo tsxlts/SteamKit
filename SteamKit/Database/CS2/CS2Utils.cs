@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Database.CS2
 {

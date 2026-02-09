@@ -55,19 +55,19 @@ namespace GameClient
 
             var js = JsonConvert.SerializeObject(new
             {
-                Collectibles = CS2Database.Single.Collectibles(SteamEnum.Language.Schinese),
-                WeaponCases = CS2Database.Single.WeaponCases(SteamEnum.Language.Schinese),
-                WeaponCaseKeys = CS2Database.Single.WeaponCaseKeys(SteamEnum.Language.Schinese),
-                Paints = CS2Database.Single.Paints(SteamEnum.Language.Schinese),
-                Stickers = CS2Database.Single.Stickers(SteamEnum.Language.Schinese),
-                Keychains = CS2Database.Single.Keychains(SteamEnum.Language.Schinese),
+                Collectibles = CS2Database.Single.Collectibles(Enums.Language.Schinese),
+                WeaponCases = CS2Database.Single.WeaponCases(Enums.Language.Schinese),
+                WeaponCaseKeys = CS2Database.Single.WeaponCaseKeys(Enums.Language.Schinese),
+                Paints = CS2Database.Single.Paints(Enums.Language.Schinese),
+                Stickers = CS2Database.Single.Stickers(Enums.Language.Schinese),
+                Keychains = CS2Database.Single.Keychains(Enums.Language.Schinese),
             }, Formatting.Indented);
         }
 
         static async Task Main(string[] args)
         {
-            var stickers = CS2Database.Single.Stickers(SteamEnum.Language.Schinese).ToArray();
-            var jstickers = CS2Database.Single.Stickers(SteamEnum.Language.Japanese).ToArray();
+            var stickers = CS2Database.Single.Stickers(Enums.Language.Schinese).ToArray();
+            var jstickers = CS2Database.Single.Stickers(Enums.Language.Japanese).ToArray();
 
             //
             var hex = "3809A2CF73780E0401000000";
@@ -86,7 +86,7 @@ namespace GameClient
 
             SteamCommunityClient webClient = new SteamCommunityClient();
             webClient.SetLogger(new ConsoleLogger());
-            webClient.SetLanguage(SteamEnum.Language.Schinese);
+            webClient.SetLanguage(Enums.Language.Schinese);
 
             var token = Configuration["Steam:LoginToken"]!;
             token = Uri.UnescapeDataString(token);
@@ -480,7 +480,7 @@ namespace GameClient
                         var g = ProtoBuf.Serializer.Deserialize<CMsgCStrike15Welcome>(new MemoryStream(clientWelcome.game_data));
                         var g2 = ProtoBuf.Serializer.Deserialize<CMsgGCCStrike15_v2_MatchmakingGC2ClientHello>(new MemoryStream(clientWelcome.game_data2));
 
-                        var storeDataResponse = await client.QueryStorePricesAsync(client.Currency, SteamEnum.Language.Schinese)!;
+                        var storeDataResponse = await client.QueryStorePricesAsync(client.Currency, Enums.Language.Schinese)!;
 
                         try
                         {
@@ -515,7 +515,7 @@ namespace GameClient
                                 var sotreItemPrice = storeItem.Prices[currency].SalePrice;
                                 Console.WriteLine($"{storeItem.Name}：{sotreItemPrice}");
 
-                                var purchaseInitResponse = await client.InitStorePurchaseAsync(storeItem.DefIndex, count, sotreItemPrice * count, client.Currency, language: SteamEnum.Language.Schinese);
+                                var purchaseInitResponse = await client.InitStorePurchaseAsync(storeItem.DefIndex, count, sotreItemPrice * count, client.Currency, language: Enums.Language.Schinese);
                                 Console.WriteLine($"InitStorePurchaseAsync:\n{JsonConvert.SerializeObject(purchaseInitResponse, Formatting.Indented)}");
 
                                 var microTxnAuthResponse = await microTxnHandler.QueryMicroTxnAuthRequestAsync(purchaseInitResponse!.txn_id, default);

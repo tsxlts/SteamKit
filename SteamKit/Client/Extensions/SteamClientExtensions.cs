@@ -4,7 +4,7 @@ using SteamKit.Client.Model;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Internal;
 using SteamKit.Model;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Client
 {

@@ -1,7 +1,7 @@
 ﻿using SteamKit.Client.Model;
 using SteamKit.Client.Model.Proto;
 using SteamKit.Client.Server;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Client.Hanlders
 {

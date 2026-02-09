@@ -28,7 +28,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public SteamEnum.Language language { get; set; }
+        public Enums.Language language { get; set; }
 
         /// <summary>
         /// 

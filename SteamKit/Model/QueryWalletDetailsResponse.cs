@@ -50,7 +50,7 @@ namespace SteamKit.Model
         /// 钱包货币类型
         /// </summary>
         [JsonProperty("currency_code")]
-        public SteamEnum.Currency CurrencyCode { get; set; }
+        public Enums.Currency CurrencyCode { get; set; }
 
         /// <summary>
         /// 最新更新时间

@@ -3,7 +3,7 @@ using SteamKit.Model;
 using SteamKit.Model.Internal;
 using static SteamKit.Internal.Utils;
 using static SteamKit.Builder.ProxyBulider;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Api
 {

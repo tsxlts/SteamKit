@@ -12,7 +12,7 @@ using SteamKit.Client.Options;
 using SteamKit.Exceptions;
 using SteamKit.Factory;
 using SteamKit.Model;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Client
 {

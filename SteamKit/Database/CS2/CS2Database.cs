@@ -88,7 +88,7 @@ namespace SteamKit.Database.CS2
         /// <param name="items_game_cdn_url"></param>
         /// <param name="resources"></param>
         /// <returns></returns>
-        public CS2Database SetRemoteDatabase(string items_game_url, string items_game_cdn_url, IDictionary<SteamEnum.Language, string> resources)
+        public CS2Database SetRemoteDatabase(string items_game_url, string items_game_cdn_url, IDictionary<Enums.Language, string> resources)
         {
             this.items_game.SetRemoteUrl(items_game_url);
             this.items_game.SetRemoteUrl(items_game_cdn_url);
@@ -107,7 +107,7 @@ namespace SteamKit.Database.CS2
         /// <param name="language"></param>
         /// <param name="resourceUrl"></param>
         /// <returns></returns>
-        public CS2Database SetRemoteDatabase(SteamEnum.Language language, string resourceUrl)
+        public CS2Database SetRemoteDatabase(Enums.Language language, string resourceUrl)
         {
             SetResourceRemoteDatabase(language, resourceUrl);
             return this;
@@ -191,7 +191,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language"></param>
         /// <returns></returns>
-        public IEnumerable<Items> Items(SteamEnum.Language language)
+        public IEnumerable<Items> Items(Enums.Language language)
         {
             var items = itemsGame?.Content?.Value["items"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
             foreach (var item in items.Children)
@@ -207,7 +207,7 @@ namespace SteamKit.Database.CS2
                     continue;
                 }
 
-                var hashName = CS2Utils.QueryItemDefName(def, SteamEnum.Language.English);
+                var hashName = CS2Utils.QueryItemDefName(def, Enums.Language.English);
                 var name = CS2Utils.QueryItemDefName(def, language);
 
                 yield return new Items
@@ -226,7 +226,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public IEnumerable<Sticker> Stickers(SteamEnum.Language language)
+        public IEnumerable<Sticker> Stickers(Enums.Language language)
         {
             var stickerKits = itemsGame?.Content?.Value["sticker_kits"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
 
@@ -261,7 +261,7 @@ namespace SteamKit.Database.CS2
         /// <param name="language">语言类型</param>
         /// <param name="stickerId">印花Id</param>
         /// <returns></returns>
-        public Sticker? Sticker(uint stickerId, SteamEnum.Language language)
+        public Sticker? Sticker(uint stickerId, Enums.Language language)
         {
             var hashName = CS2Utils.QueryStickerHashName(stickerId);
             if (string.IsNullOrWhiteSpace(hashName))
@@ -284,7 +284,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public IEnumerable<Keychain> Keychains(SteamEnum.Language language)
+        public IEnumerable<Keychain> Keychains(Enums.Language language)
         {
             var keychainDefinitions = itemsGame?.Content?.Value["keychain_definitions"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
             foreach (var keychain in keychainDefinitions.Children ?? new List<Internal.KeyValue>())
@@ -314,7 +314,7 @@ namespace SteamKit.Database.CS2
         /// <param name="keychainId">挂件Id</param>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public Keychain? Keychain(uint keychainId, SteamEnum.Language language)
+        public Keychain? Keychain(uint keychainId, Enums.Language language)
         {
             var hashName = CS2Utils.QueryKeychainHashName(keychainId);
             if (string.IsNullOrWhiteSpace(hashName))
@@ -337,7 +337,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public IEnumerable<Paint> Paints(SteamEnum.Language language)
+        public IEnumerable<Paint> Paints(Enums.Language language)
         {
             var paintKits = itemsGame?.Content?.Value["paint_kits"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
             foreach (var paint in paintKits.Children ?? new List<Internal.KeyValue>())
@@ -349,7 +349,7 @@ namespace SteamKit.Database.CS2
 
                 var kits = paint.ToObject().Value<JToken>(paint.Name)!.ToObject<PaintKits>()!;
 
-                var hashName = CS2Utils.QueryPaintName(kits, SteamEnum.Language.English);
+                var hashName = CS2Utils.QueryPaintName(kits, Enums.Language.English);
                 var name = CS2Utils.QueryPaintName(kits, language);
                 yield return new Paint
                 {
@@ -366,7 +366,7 @@ namespace SteamKit.Database.CS2
         /// <param name="paintIndex">皮肤编号</param>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public Paint? Paint(uint paintIndex, SteamEnum.Language language)
+        public Paint? Paint(uint paintIndex, Enums.Language language)
         {
             var kits = CS2Utils.QueryPaint(paintIndex);
             if (kits == null)
@@ -374,7 +374,7 @@ namespace SteamKit.Database.CS2
                 return null;
             }
 
-            var hashName = CS2Utils.QueryPaintName(kits, SteamEnum.Language.English);
+            var hashName = CS2Utils.QueryPaintName(kits, Enums.Language.English);
             var name = CS2Utils.QueryPaintName(kits, language);
             return new Paint
             {
@@ -390,7 +390,7 @@ namespace SteamKit.Database.CS2
         /// <param name="setHashName">收藏品HashName</param>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public Collectibles? Collectibles(string setHashName, SteamEnum.Language language)
+        public Collectibles? Collectibles(string setHashName, Enums.Language language)
         {
             var set = CS2Utils.QueryCollection(setHashName);
             if (set == null)
@@ -398,7 +398,7 @@ namespace SteamKit.Database.CS2
                 return null;
             }
 
-            var enName = CS2Utils.QueryName(set.name.Replace("#", ""), SteamEnum.Language.English);
+            var enName = CS2Utils.QueryName(set.name.Replace("#", ""), Enums.Language.English);
             var name = CS2Utils.QueryName(set.name.Replace("#", ""), language);
             var description = CS2Utils.QueryName(set.set_description.Replace("#", ""), language);
             var rarities = GetSetRarities(setHashName, language);
@@ -419,7 +419,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        public IEnumerable<Collectibles> Collectibles(SteamEnum.Language language)
+        public IEnumerable<Collectibles> Collectibles(Enums.Language language)
         {
             var itemSets = itemsGame?.Content?.Value["item_sets"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
             foreach (var itemSet in itemSets.Children ?? new List<Internal.KeyValue>())
@@ -431,7 +431,7 @@ namespace SteamKit.Database.CS2
 
                 var set = itemSet.ToObject().Value<JToken>(itemSet.Name)!.ToObject<CollectiblesDefinition>()!;
 
-                var enName = CS2Utils.QueryName(set.name.Replace("#", ""), SteamEnum.Language.English);
+                var enName = CS2Utils.QueryName(set.name.Replace("#", ""), Enums.Language.English);
                 var name = CS2Utils.QueryName(set.name.Replace("#", ""), language);
                 var description = CS2Utils.QueryName(set.set_description.Replace("#", ""), language);
                 var rarities = GetSetRarities(itemSet.Name, language);
@@ -454,7 +454,7 @@ namespace SteamKit.Database.CS2
         /// <param name="language">语言类型</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public IEnumerable<WeaponCase> WeaponCases(SteamEnum.Language language)
+        public IEnumerable<WeaponCase> WeaponCases(Enums.Language language)
         {
             var items = itemsGame?.Content?.Value["items"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
             foreach (var item in items.Children ?? new List<Internal.KeyValue>())
@@ -490,7 +490,7 @@ namespace SteamKit.Database.CS2
                     uint.TryParse(property.Name, out keyDefIndex);
                 }
 
-                var hashName = CS2Utils.QueryName(weaponHud, SteamEnum.Language.English)!;
+                var hashName = CS2Utils.QueryName(weaponHud, Enums.Language.English)!;
                 var name = CS2Utils.QueryName(weaponHud, language);
 
                 var setHahsName = @case.Value<string>("name")!;
@@ -513,7 +513,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language"></param>
         /// <returns></returns>
-        public IEnumerable<WeaponCaseKey> WeaponCaseKeys(SteamEnum.Language language)
+        public IEnumerable<WeaponCaseKey> WeaponCaseKeys(Enums.Language language)
         {
             var items = itemsGame?.Content?.Value["items"] ?? throw new Exception("未获取到可用数据库,请先加载数据库,items_game");
             foreach (var item in items.Children ?? new List<Internal.KeyValue>())
@@ -549,7 +549,7 @@ namespace SteamKit.Database.CS2
                     continue;
                 }
 
-                var hashName = CS2Utils.QueryName(weaponHud, SteamEnum.Language.English)!;
+                var hashName = CS2Utils.QueryName(weaponHud, Enums.Language.English)!;
                 var name = CS2Utils.QueryName(weaponHud, language);
 
                 var setHahsName = caseKey.Value<string>("name")!;
@@ -571,7 +571,7 @@ namespace SteamKit.Database.CS2
         /// <param name="rarityhashName">品质HashName</param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public Rarity? Rarity(string rarityhashName, SteamEnum.Language language)
+        public Rarity? Rarity(string rarityhashName, Enums.Language language)
         {
             var kit = CS2Utils.QuetyRarity(rarityhashName);
             if (kit == null)
@@ -612,7 +612,7 @@ namespace SteamKit.Database.CS2
         /// <param name="setHashName"></param>
         /// <param name="language">语言类型</param>
         /// <returns></returns>
-        private List<Rarity> GetSetRarities(string setHashName, SteamEnum.Language language)
+        private List<Rarity> GetSetRarities(string setHashName, Enums.Language language)
         {
             var result = new List<Rarity>();
 
@@ -661,7 +661,7 @@ namespace SteamKit.Database.CS2
         /// </summary>
         /// <param name="language"></param>
         /// <param name="resourceUrl"></param>
-        private void SetResourceRemoteDatabase(SteamEnum.Language language, string resourceUrl)
+        private void SetResourceRemoteDatabase(Enums.Language language, string resourceUrl)
         {
             var index = this.csgo_resources.FindIndex(c => c.Language == language);
             if (index < 0)

@@ -1,6 +1,6 @@
 ﻿using SteamKit.Api;
 using static SteamKit.Builder.ProxyBulider;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.WebClient
 {

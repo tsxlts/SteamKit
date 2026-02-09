@@ -5,7 +5,7 @@ using SteamKit.Client.Model.Proto;
 using SteamKit.Factory;
 using SteamKit.Model;
 using SteamKit.Api;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.WebClient
 {

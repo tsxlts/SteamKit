@@ -1,5 +1,5 @@
 ﻿
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Client.Model
 {

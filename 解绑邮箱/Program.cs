@@ -9,7 +9,7 @@ using SteamKit.Api;
 using SteamKit.WebClient;
 using 解绑邮箱.Factory;
 using static SteamKit.Builder.ProxyBulider;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 using SteamKit.Builder;
 
 namespace 解绑邮箱

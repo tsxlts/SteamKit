@@ -48,7 +48,7 @@ namespace SteamKit.Model
         /// 待确认信息类型
         /// </summary>
         [JsonProperty("type")]
-        public SteamEnum.ConfirmationType ConfType { get; set; }
+        public Enums.ConfirmationType ConfType { get; set; }
 
         /// <summary>
         /// 

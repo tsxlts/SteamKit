@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Model
 {

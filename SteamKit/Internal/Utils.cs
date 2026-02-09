@@ -3,7 +3,7 @@ using System.Text;
 using SteamKit.Attributes;
 using SteamKit.Model;
 using static SteamKit.Builder.ProxyBulider;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Internal
 {

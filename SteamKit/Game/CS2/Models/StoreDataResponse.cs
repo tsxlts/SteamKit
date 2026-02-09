@@ -9,14 +9,14 @@ namespace SteamKit.Game.CS2.Models
     /// </summary>
     public class StoreDataResponse
     {
-        private readonly SteamEnum.Language language;
+        private readonly Enums.Language language;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="storeUserDataDataResponse"></param>
         /// <param name="language"></param>
-        public StoreDataResponse(CMsgStoreGetUserDataResponse storeUserDataDataResponse, SteamEnum.Language language)
+        public StoreDataResponse(CMsgStoreGetUserDataResponse storeUserDataDataResponse, Enums.Language language)
         {
             this.language = language;
             Result = storeUserDataDataResponse.result;

@@ -6,7 +6,7 @@ namespace SteamKit
     /// <summary>
     /// Enum
     /// </summary>
-    public class SteamEnum
+    public class Enums
     {
         /// <summary>
         /// 网站

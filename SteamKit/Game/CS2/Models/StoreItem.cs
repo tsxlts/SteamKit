@@ -14,7 +14,7 @@ namespace SteamKit.Game.CS2.Models
         /// </summary>
         /// <param name="itemLink"></param>
         /// <param name="language"></param>
-        public StoreItem(string itemLink, SteamEnum.Language language)
+        public StoreItem(string itemLink, Enums.Language language)
         {
             var def = CS2Utils.QueryItemDef(itemLink);
             if (def == null)
@@ -24,7 +24,7 @@ namespace SteamKit.Game.CS2.Models
 
             DefIndex = def.DefIndex;
             Key = def.Key;
-            HashName = CS2Utils.QueryItemDefName(def, SteamEnum.Language.English) ?? "";
+            HashName = CS2Utils.QueryItemDefName(def, Enums.Language.English) ?? "";
             Name = CS2Utils.QueryItemDefName(def, language) ?? "";
         }
 

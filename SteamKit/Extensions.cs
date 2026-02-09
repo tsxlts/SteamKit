@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Api;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit
 {

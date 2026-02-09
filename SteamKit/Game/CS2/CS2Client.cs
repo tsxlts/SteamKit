@@ -11,7 +11,7 @@ using SteamKit.Exceptions;
 using SteamKit.Game.CS2.Models;
 using SteamKit.Internal;
 using static SteamKit.Client.Model.GC.CS2.CEconItemPreviewDataBlock;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.Game.CS2
 {

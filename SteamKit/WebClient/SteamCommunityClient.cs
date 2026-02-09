@@ -5,7 +5,7 @@ using SteamKit.Model;
 using static SteamKit.Internal.Utils;
 using static SteamKit.Model.QueryInventoryHistoryResponse;
 using static SteamKit.Builder.ProxyBulider;
-using static SteamKit.SteamEnum;
+using static SteamKit.Enums;
 
 namespace SteamKit.WebClient
 {

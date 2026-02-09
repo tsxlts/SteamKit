@@ -181,7 +181,7 @@ namespace SteamKit.Model
         /// 
         /// </summary>
         [JsonProperty("wallet_currency")]
-        public SteamEnum.Currency WalletCurrency { get; set; }
+        public Enums.Currency WalletCurrency { get; set; }
 
         /// <summary>
         /// 
