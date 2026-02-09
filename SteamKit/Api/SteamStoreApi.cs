@@ -7,6 +7,7 @@ using SteamKit.Internal;
 using SteamKit.Model;
 using SteamKit.Model.Internal;
 using static SteamKit.Builder.ProxyBulider;
+using static SteamKit.Enums;
 using static SteamKit.Internal.Utils;
 
 namespace SteamKit.Api
@@ -16,6 +17,92 @@ namespace SteamKit.Api
     /// </summary>
     public partial class SteamStoreApi
     {
+        /// <summary>
+        /// 查询游戏类物品价格
+        /// </summary>
+        /// <param name="apiKey">
+        /// 用户ApiKey
+        /// 与accessToken不能同时为空
+        /// </param>
+        /// <param name="accessToken">
+        /// 用户登录Token
+        /// 与apiKey不能同时为空
+        /// </param>
+        /// <param name="appId">游戏Id</param>
+        /// <param name="language">语言类型</param>
+        /// <param name="cancellationToken">CancellationToken</param>
+        /// <returns></returns>
+        public static async Task<IWebResponse<QueryAssetPriceResponse>> QueryAssetPriceAsync(string? apiKey, string? accessToken, string appId, Language language = Language.Schinese, CancellationToken cancellationToken = default)
+        {
+            Proxy proxy = GetProxy();
+            Uri uri = new Uri($"{proxy.SteamApi}/ISteamEconomy/GetAssetPrices/v1/?" +
+                $"key={apiKey}" +
+                $"&access_token={Uri.EscapeDataString(accessToken ?? "")}" +
+                $"&appId={appId}" +
+                $"&language={language.GetApiCode()}");
+
+            using (var response = await InternalHttpClient.SendAsync(uri, HttpMethod.Get, null, InternalHttpClient.ResultType.JsonFormate, headers: SetDefaultHeaders(proxy), cookies: SetDefaultCookies(proxy), proxy: proxy.WebProxy, cancellationToken: cancellationToken).ConfigureAwait(false))
+            {
+                ISteamApiResponse<QueryAssetPriceResponse> priceResponse = SteamApiResponse<JToken>.JsonResponse(response).Convert(token =>
+                {
+                    var body = token?.Value<JToken>("result");
+                    if (body == null || body.Type == JTokenType.Null || body is JArray)
+                    {
+                        return new QueryAssetPriceResponse
+                        {
+                            Success = false,
+                            Assets = new List<AppStoreAsset>()
+                        };
+                    }
+
+                    var response = new QueryAssetPriceResponse
+                    {
+                        Success = body.Value<bool>("success"),
+                        Assets = new List<AppStoreAsset>(),
+                    };
+
+                    var assets = body.Value<JArray>("assets") ?? new JArray();
+                    foreach (var asset in assets)
+                    {
+                        var name = asset.Value<string>("name") ?? "";
+                        var date = asset.Value<string>("date") ?? "";
+                        var classId = asset.Value<string>("classid") ?? "";
+                        var prices = asset.Value<JToken>("prices") ?? new JObject();
+                        var original_prices = asset.Value<JToken>("original_prices") ?? new JObject();
+
+                        var assetPrices = new List<AppStoreAsset.AssetPrice>();
+                        var currencies = Enum.GetValues<Currency>();
+                        foreach (var item in currencies)
+                        {
+                            var price = prices.Value<ulong?>(item.ToString());
+                            var originalPrice = original_prices.Value<ulong?>(item.ToString());
+                            if (!price.HasValue)
+                            {
+                                continue;
+                            }
+
+                            assetPrices.Add(new AppStoreAsset.AssetPrice(item)
+                            {
+                                SalePrice = price.Value,
+                                Price = originalPrice ?? price.Value,
+                            });
+                        }
+
+                        response.Assets.Add(new AppStoreAsset
+                        {
+                            Name = name,
+                            Date = date,
+                            ClassId = classId,
+                            Prices = assetPrices,
+                        });
+                    }
+
+                    return response;
+                });
+                return priceResponse;
+            }
+        }
+
         /// <summary>
         /// 完成商店购买
         /// </summary>
