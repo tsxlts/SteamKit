@@ -93,14 +93,14 @@ namespace GameClient
 
             await webClient.LoginAsync(token);
 
-            //var QueryInventoryHistoryAsync = await SteamApi.QueryInventoryHistoryAsync(webClient.SteamId, webClient.SessionId, ["730"], null, SteamEnum.Language.Schinese, webClient.WebCookie);
-            //var QuetyListingsAsync = await SteamApi.QuetyListingsAsync(0, 10, webClient.WebCookie);
-            //var QueryMarketListingsAsync = await SteamApi.QueryMarketListingsAsync("730", "Dual Berettas | Flora Carnivora (Well-Worn)", 0, 10);
-            //var QuerySelfInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", false, SteamEnum.Language.Schinese, webClient.WebCookie);
-            //var QueryTradeStatusAsync = await SteamApi.QueryTradeStatusAsync(webClient.WebApiToken, "812466051293101185");
-            //var QueryInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", userCookies: webClient.WebCookie);
-            //var QueryOffersAsync = await SteamApi.QueryOffersAsync(webClient.WebApiToken);
-            //var QueryOfferAsync = await SteamApi.QueryOfferAsync(webClient.WebApiToken, "8807882789");
+            var QueryInventoryHistoryAsync = await SteamApi.QueryInventoryHistoryAsync(webClient.SteamId, webClient.SessionId, ["730"], null, Enums.Language.Schinese, webClient.WebCookie);
+            var QuetyListingsAsync = await SteamApi.QuetyListingsAsync(0, 10, webClient.WebCookie);
+            var QueryMarketListingsAsync = await SteamApi.QueryMarketListingsAsync("730", "Dual Berettas | Flora Carnivora (Well-Worn)", 0, 10);
+            var QuerySelfInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", false, Enums.Language.Schinese, webClient.WebCookie);
+            var QueryTradeStatusAsync = await SteamApi.QueryTradeStatusAsync(webClient.WebApiToken, "812466051293101185");
+            var QueryInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", userCookies: webClient.WebCookie);
+            var QueryOffersAsync = await SteamApi.QueryOffersAsync(webClient.WebApiToken);
+            var QueryOfferAsync = await SteamApi.QueryOfferAsync(webClient.WebApiToken, "8839119086");
 
             Console.WriteLine("请选择操作：\n" +
                 $"1、【检视】\t 2、【CS2Client】\t 3、【Dota2Client】\t 4、【TF2Client】\n" +
