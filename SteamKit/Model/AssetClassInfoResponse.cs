@@ -32,6 +32,18 @@ namespace SteamKit.Model
         /// <summary>
         /// 
         /// </summary>
+        [JsonProperty("classid")]
+        public ulong ClassId { get; set; }
+
+        /// <summary>
+        /// 请求时有传入响应时才返回
+        /// </summary>
+        [JsonProperty("instanceid")]
+        public ulong InstanceId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("icon_url")]
         public string IconUrl { get; set; } = string.Empty;
 
@@ -119,6 +131,24 @@ namespace SteamKit.Model
         /// <summary>
         /// 
         /// </summary>
+        [JsonProperty("market_listing_bucket_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string MarketListingBucketId { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("market_listing_bucket_group_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string MarketListingBucketGroupId { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("market_listing_bucket_group_name", NullValueHandling = NullValueHandling.Ignore)]
+        public string MarketListingBucketGroupName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("cache_expiration", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? CacheExpiration { get; set; }
 
@@ -151,18 +181,6 @@ namespace SteamKit.Model
         /// </summary>
         [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]
         public IDictionary<int, Tag> Tags { get; set; } = new Dictionary<int, Tag>();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("classid")]
-        public ulong ClassId { get; set; }
-
-        /// <summary>
-        /// 请求时有传入响应时才返回
-        /// </summary>
-        [JsonProperty("instanceid")]
-        public ulong InstanceId { get; set; }
 
         /// <summary>
         /// 

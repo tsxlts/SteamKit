@@ -20,6 +20,7 @@ using SteamKit.Game;
 using SteamKit.Game.CS2;
 using SteamKit.Game.Dota2;
 using SteamKit.Game.TF2;
+using SteamKit.Model;
 using SteamKit.Types;
 using SteamKit.WebClient;
 using static SteamKit.Builder.ProxyBulider;
@@ -93,14 +94,15 @@ namespace GameClient
 
             await webClient.LoginAsync(token);
 
+            var QueryAssetClassInfoAsync = await SteamApi.QueryAssetClassInfoAsync(null, webClient.WebApiToken, "730", [new QueryAssetClassInfoParameter { ClassId = 7993041777, InstanceId = 7201925669 }]);
             var QueryInventoryHistoryAsync = await SteamApi.QueryInventoryHistoryAsync(webClient.SteamId, webClient.SessionId, ["730"], null, Enums.Language.Schinese, webClient.WebCookie);
             var QuetyListingsAsync = await SteamApi.QuetyListingsAsync(0, 10, webClient.WebCookie);
             var QueryMarketListingsAsync = await SteamApi.QueryMarketListingsAsync("730", "Dual Berettas | Flora Carnivora (Well-Worn)", 0, 10);
             var QuerySelfInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", false, Enums.Language.Schinese, webClient.WebCookie);
-            var QueryTradeStatusAsync = await SteamApi.QueryTradeStatusAsync(webClient.WebApiToken, "812466051293101185");
             var QueryInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", userCookies: webClient.WebCookie);
-            var QueryOffersAsync = await SteamApi.QueryOffersAsync(webClient.WebApiToken);
-            var QueryOfferAsync = await SteamApi.QueryOfferAsync(webClient.WebApiToken, "8839119086");
+            var QueryOffersAsync = await SteamApi.QueryOffersAsync(webClient.WebApiToken, sentOffer: true, receivedOffer: true, onlyActive: false);
+            var QueryOfferAsync = await SteamApi.QueryOfferAsync(webClient.WebApiToken, QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == SteamKit.Model.TradeOfferState.Accepted)?.TradeOfferId);
+            var QueryTradeStatusAsync = await SteamApi.QueryTradeStatusAsync(webClient.WebApiToken, QueryOfferAsync.Body?.TradeOffer?.TradeId);
 
             Console.WriteLine("请选择操作：\n" +
                 $"1、【检视】\t 2、【CS2Client】\t 3、【Dota2Client】\t 4、【TF2Client】\n" +
