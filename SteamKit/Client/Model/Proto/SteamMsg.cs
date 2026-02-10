@@ -7063,6 +7063,28 @@ namespace SteamKit.Client.Model.Proto
 
         [global::ProtoBuf.ProtoMember(33)]
         public CEconItem_ContainerProperties container_properties { get; set; }
+
+        [global::ProtoBuf.ProtoMember(34)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string market_bucket_group_name
+        {
+            get => __pbn__market_bucket_group_name ?? "";
+            set => __pbn__market_bucket_group_name = value;
+        }
+        public bool ShouldSerializemarket_bucket_group_name() => __pbn__market_bucket_group_name != null;
+        public void Resetmarket_bucket_group_name() => __pbn__market_bucket_group_name = null;
+        private string __pbn__market_bucket_group_name;
+
+        [global::ProtoBuf.ProtoMember(35)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string market_bucket_group_id
+        {
+            get => __pbn__market_bucket_group_id ?? "";
+            set => __pbn__market_bucket_group_id = value;
+        }
+        public bool ShouldSerializemarket_bucket_group_id() => __pbn__market_bucket_group_id != null;
+        public void Resetmarket_bucket_group_id() => __pbn__market_bucket_group_id = null;
+        private string __pbn__market_bucket_group_id;
     }
 
     [global::ProtoBuf.ProtoContract()]
