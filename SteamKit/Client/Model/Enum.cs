@@ -2597,4 +2597,14 @@ namespace SteamKit.Client.Model
         k_ECloudPendingRemoteOperationUploadPending = 3,
         k_ECloudPendingRemoteOperationAppSessionSuspended = 4,
     }
+
+    [global::ProtoBuf.ProtoContract()]
+    public enum EAssetPropertyType
+    {
+        k_EAssetPropertyType_Unknown = 0,
+        k_EAssetPropertyType_Float = 1,
+        k_EAssetPropertyType_Int = 2,
+        k_EAssetPropertyType_String = 3,
+        k_EAssetPropertyType_MAX = 4,
+    }
 }

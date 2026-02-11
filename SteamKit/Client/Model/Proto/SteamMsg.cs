@@ -1,5 +1,4 @@
-﻿
-namespace SteamKit.Client.Model.Proto
+﻿namespace SteamKit.Client.Model.Proto
 {
     [global::ProtoBuf.ProtoContract()]
     public partial class NoResponse : global::ProtoBuf.IExtensible
@@ -7085,6 +7084,7 @@ namespace SteamKit.Client.Model.Proto
         public bool ShouldSerializemarket_bucket_group_id() => __pbn__market_bucket_group_id != null;
         public void Resetmarket_bucket_group_id() => __pbn__market_bucket_group_id = null;
         private string __pbn__market_bucket_group_id;
+
     }
 
     [global::ProtoBuf.ProtoContract()]
@@ -7191,6 +7191,21 @@ namespace SteamKit.Client.Model.Proto
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class CEconItem_ContainerProperties : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<CEconItem_ClassIdentifiers> contained_items { get; } = new global::System.Collections.Generic.List<CEconItem_ClassIdentifiers>();
+
+        [global::ProtoBuf.ProtoMember(2)]
+        public global::System.Collections.Generic.List<CEconItem_Tag> search_tags { get; } = new global::System.Collections.Generic.List<CEconItem_Tag>();
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class CEconItem_AssetProperty : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -7275,21 +7290,6 @@ namespace SteamKit.Client.Model.Proto
 
         [global::ProtoBuf.ProtoMember(5)]
         public global::System.Collections.Generic.List<CEconItem_AssetAccessory> nested_accessories { get; } = new global::System.Collections.Generic.List<CEconItem_AssetAccessory>();
-
-    }
-
-    [global::ProtoBuf.ProtoContract()]
-    public partial class CEconItem_ContainerProperties : global::ProtoBuf.IExtensible
-    {
-        private global::ProtoBuf.IExtension __pbn__extensionData;
-        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
-
-        [global::ProtoBuf.ProtoMember(1)]
-        public global::System.Collections.Generic.List<CEconItem_ClassIdentifiers> contained_items { get; } = new global::System.Collections.Generic.List<CEconItem_ClassIdentifiers>();
-
-        [global::ProtoBuf.ProtoMember(2)]
-        public global::System.Collections.Generic.List<CEconItem_Tag> search_tags { get; } = new global::System.Collections.Generic.List<CEconItem_Tag>();
 
     }
 
@@ -7390,6 +7390,85 @@ namespace SteamKit.Client.Model.Proto
     }
 
     [global::ProtoBuf.ProtoContract()]
+    public partial class CEcon_GetTradeOfferAccessToken_Request : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public bool generate_new_token
+        {
+            get => __pbn__generate_new_token.GetValueOrDefault();
+            set => __pbn__generate_new_token = value;
+        }
+        public bool ShouldSerializegenerate_new_token() => __pbn__generate_new_token != null;
+        public void Resetgenerate_new_token() => __pbn__generate_new_token = null;
+        private bool? __pbn__generate_new_token;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CEcon_GetTradeOfferAccessToken_Response : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string trade_offer_access_token
+        {
+            get => __pbn__trade_offer_access_token ?? "";
+            set => __pbn__trade_offer_access_token = value;
+        }
+        public bool ShouldSerializetrade_offer_access_token() => __pbn__trade_offer_access_token != null;
+        public void Resettrade_offer_access_token() => __pbn__trade_offer_access_token = null;
+        private string __pbn__trade_offer_access_token;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CEcon_ClientGetItemShopOverlayAuthURL_Request : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string return_url
+        {
+            get => __pbn__return_url ?? "";
+            set => __pbn__return_url = value;
+        }
+        public bool ShouldSerializereturn_url() => __pbn__return_url != null;
+        public void Resetreturn_url() => __pbn__return_url = null;
+        private string __pbn__return_url;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CEcon_ClientGetItemShopOverlayAuthURL_Response : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string url
+        {
+            get => __pbn__url ?? "";
+            set => __pbn__url = value;
+        }
+        public bool ShouldSerializeurl() => __pbn__url != null;
+        public void Reseturl() => __pbn__url = null;
+        private string __pbn__url;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
     public partial class CEcon_GetAssetClassInfo_Request : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
@@ -7445,41 +7524,146 @@ namespace SteamKit.Client.Model.Proto
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class CEcon_GetTradeOfferAccessToken_Request : global::ProtoBuf.IExtensible
+    public partial class CEcon_GetAssetPropertySchema_Request : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1)]
-        public bool generate_new_token
+        public uint appid
         {
-            get => __pbn__generate_new_token.GetValueOrDefault();
-            set => __pbn__generate_new_token = value;
+            get => __pbn__appid.GetValueOrDefault();
+            set => __pbn__appid = value;
         }
-        public bool ShouldSerializegenerate_new_token() => __pbn__generate_new_token != null;
-        public void Resetgenerate_new_token() => __pbn__generate_new_token = null;
-        private bool? __pbn__generate_new_token;
+        public bool ShouldSerializeappid() => __pbn__appid != null;
+        public void Resetappid() => __pbn__appid = null;
+        private uint? __pbn__appid;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string language
+        {
+            get => __pbn__language ?? "";
+            set => __pbn__language = value;
+        }
+        public bool ShouldSerializelanguage() => __pbn__language != null;
+        public void Resetlanguage() => __pbn__language = null;
+        private string __pbn__language;
 
     }
 
     [global::ProtoBuf.ProtoContract()]
-    public partial class CEcon_GetTradeOfferAccessToken_Response : global::ProtoBuf.IExtensible
+    public partial class CEconItem_AssetPropertySchema : global::ProtoBuf.IExtensible
     {
         private global::ProtoBuf.IExtension __pbn__extensionData;
         global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
             => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
 
         [global::ProtoBuf.ProtoMember(1)]
-        [global::System.ComponentModel.DefaultValue("")]
-        public string trade_offer_access_token
+        public uint id
         {
-            get => __pbn__trade_offer_access_token ?? "";
-            set => __pbn__trade_offer_access_token = value;
+            get => __pbn__id.GetValueOrDefault();
+            set => __pbn__id = value;
         }
-        public bool ShouldSerializetrade_offer_access_token() => __pbn__trade_offer_access_token != null;
-        public void Resettrade_offer_access_token() => __pbn__trade_offer_access_token = null;
-        private string __pbn__trade_offer_access_token;
+        public bool ShouldSerializeid() => __pbn__id != null;
+        public void Resetid() => __pbn__id = null;
+        private uint? __pbn__id;
+
+        [global::ProtoBuf.ProtoMember(2)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string name
+        {
+            get => __pbn__name ?? "";
+            set => __pbn__name = value;
+        }
+        public bool ShouldSerializename() => __pbn__name != null;
+        public void Resetname() => __pbn__name = null;
+        private string __pbn__name;
+
+        [global::ProtoBuf.ProtoMember(3)]
+        [global::System.ComponentModel.DefaultValue(EAssetPropertyType.k_EAssetPropertyType_Unknown)]
+        public EAssetPropertyType type
+        {
+            get => __pbn__type ?? EAssetPropertyType.k_EAssetPropertyType_Unknown;
+            set => __pbn__type = value;
+        }
+        public bool ShouldSerializetype() => __pbn__type != null;
+        public void Resettype() => __pbn__type = null;
+        private EAssetPropertyType? __pbn__type;
+
+        [global::ProtoBuf.ProtoMember(4)]
+        public float float_min
+        {
+            get => __pbn__float_min.GetValueOrDefault();
+            set => __pbn__float_min = value;
+        }
+        public bool ShouldSerializefloat_min() => __pbn__float_min != null;
+        public void Resetfloat_min() => __pbn__float_min = null;
+        private float? __pbn__float_min;
+
+        [global::ProtoBuf.ProtoMember(5)]
+        public float float_max
+        {
+            get => __pbn__float_max.GetValueOrDefault();
+            set => __pbn__float_max = value;
+        }
+        public bool ShouldSerializefloat_max() => __pbn__float_max != null;
+        public void Resetfloat_max() => __pbn__float_max = null;
+        private float? __pbn__float_max;
+
+        [global::ProtoBuf.ProtoMember(6)]
+        public long int_min
+        {
+            get => __pbn__int_min.GetValueOrDefault();
+            set => __pbn__int_min = value;
+        }
+        public bool ShouldSerializeint_min() => __pbn__int_min != null;
+        public void Resetint_min() => __pbn__int_min = null;
+        private long? __pbn__int_min;
+
+        [global::ProtoBuf.ProtoMember(7)]
+        public long int_max
+        {
+            get => __pbn__int_max.GetValueOrDefault();
+            set => __pbn__int_max = value;
+        }
+        public bool ShouldSerializeint_max() => __pbn__int_max != null;
+        public void Resetint_max() => __pbn__int_max = null;
+        private long? __pbn__int_max;
+
+        [global::ProtoBuf.ProtoMember(8)]
+        [global::System.ComponentModel.DefaultValue("")]
+        public string localized_label
+        {
+            get => __pbn__localized_label ?? "";
+            set => __pbn__localized_label = value;
+        }
+        public bool ShouldSerializelocalized_label() => __pbn__localized_label != null;
+        public void Resetlocalized_label() => __pbn__localized_label = null;
+        private string __pbn__localized_label;
+
+        [global::ProtoBuf.ProtoMember(9)]
+        public bool hide_from_description
+        {
+            get => __pbn__hide_from_description.GetValueOrDefault();
+            set => __pbn__hide_from_description = value;
+        }
+        public bool ShouldSerializehide_from_description() => __pbn__hide_from_description != null;
+        public void Resethide_from_description() => __pbn__hide_from_description = null;
+        private bool? __pbn__hide_from_description;
+
+    }
+
+    [global::ProtoBuf.ProtoContract()]
+    public partial class CEcon_GetAssetPropertySchema_Response : global::ProtoBuf.IExtensible
+    {
+        private global::ProtoBuf.IExtension __pbn__extensionData;
+        global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+            => global::ProtoBuf.Extensible.GetExtensionObject(ref __pbn__extensionData, createIfMissing);
+
+        [global::ProtoBuf.ProtoMember(1)]
+        public global::System.Collections.Generic.List<CEconItem_AssetPropertySchema> property_schemas { get; } = new global::System.Collections.Generic.List<CEconItem_AssetPropertySchema>();
 
     }
 
