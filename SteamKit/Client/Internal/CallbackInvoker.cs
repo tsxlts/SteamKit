@@ -14,7 +14,7 @@ namespace SteamKit.Client.Internal
 
             try
             {
-                cb.Invoke(sender, param);
+                cb(sender, param);
             }
             catch (Exception ex)
             {
@@ -34,7 +34,7 @@ namespace SteamKit.Client.Internal
             {
                 try
                 {
-                    cb.Invoke(sender, param);
+                    cb(sender, param);
                 }
                 catch (Exception ex)
                 {
@@ -53,7 +53,7 @@ namespace SteamKit.Client.Internal
 
             try
             {
-                cb.Invoke(sender, param).ConfigureAwait(false).GetAwaiter().GetResult();
+                cb(sender, param).ConfigureAwait(false).GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace SteamKit.Client.Internal
 
             try
             {
-                return cb.Invoke(sender, param);
+                return cb(sender, param);
             }
             catch (Exception ex)
             {
