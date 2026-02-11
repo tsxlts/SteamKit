@@ -7,11 +7,12 @@ namespace SteamKit.Client.Internal
         /// <summary>
         /// 
         /// </summary>
-        public MessageAsyncCallbackHandler() : this(WithoutCallback)
+        public MessageAsyncCallbackHandler()
         {
+            Callback = WithoutCallback;
         }
 
-        public MessageAsyncCallbackHandler(AsyncEventHandler<T> callback)
+        public MessageAsyncCallbackHandler(AsyncEventHandler<T> callback) : this()
         {
             Callback += callback;
         }
@@ -28,6 +29,11 @@ namespace SteamKit.Client.Internal
         /// <returns></returns>
         public MessageAsyncCallbackHandler<T> SetCallback(AsyncEventHandler<T> callback)
         {
+            if (callback == null)
+            {
+                throw new ArgumentNullException(nameof(callback));
+            }
+
             Callback = callback;
             return this;
         }
