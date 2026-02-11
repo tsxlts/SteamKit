@@ -2028,7 +2028,7 @@ namespace SteamKit.Api
         /// <param name="currentCookies">当前登录用户Cookie</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns></returns>
-        public static async Task<IWebResponse<QuetyListingsResponse>> QuetyListingsAsync(int start, int count, CookieCollection currentCookies, CancellationToken cancellationToken = default)
+        public static async Task<IWebResponse<QuetyListingsResponse>> QueryListingsAsync(int start, int count, CookieCollection currentCookies, CancellationToken cancellationToken = default)
         {
             Proxy proxy = GetProxy();
             Uri uri = new Uri($"{proxy.SteamCommunity}/market/mylistings/render/?" +

@@ -674,10 +674,10 @@ namespace SteamKit.WebClient
             /// <param name="cancellationToken">CancellationToken</param>
             /// <exception cref="NotLoginException"></exception>
             /// <returns></returns>
-            public async Task<QuetyListingsResponse?> QuetyListingsAsync(int start, int count, CancellationToken cancellationToken = default)
+            public async Task<QuetyListingsResponse?> QueryListingsAsync(int start, int count, CancellationToken cancellationToken = default)
             {
                 SteamWebClient.CheckLogon();
-                var listingsResult = await SteamApi.QuetyListingsAsync(start, count, SteamWebClient.WebCookie, cancellationToken).ConfigureAwait(false);
+                var listingsResult = await SteamApi.QueryListingsAsync(start, count, SteamWebClient.WebCookie, cancellationToken).ConfigureAwait(false);
                 return ThrowIfError(listingsResult).Body;
             }
 

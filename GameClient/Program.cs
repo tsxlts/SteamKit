@@ -96,7 +96,7 @@ namespace GameClient
 
             var QueryAssetClassInfoAsync = await SteamApi.QueryAssetClassInfoAsync(null, webClient.WebApiToken, "730", [new QueryAssetClassInfoParameter { ClassId = 7993041777, InstanceId = 7201925669 }]);
             var QueryInventoryHistoryAsync = await SteamApi.QueryInventoryHistoryAsync(webClient.SteamId, webClient.SessionId, ["730"], null, Enums.Language.Schinese, webClient.WebCookie);
-            var QuetyListingsAsync = await SteamApi.QuetyListingsAsync(0, 10, webClient.WebCookie);
+            var QuetyListingsAsync = await SteamApi.QueryListingsAsync(0, 10, webClient.WebCookie);
             var QueryMarketListingsAsync = await SteamApi.QueryMarketListingsAsync("730", "Dual Berettas | Flora Carnivora (Well-Worn)", 0, 10);
             var QuerySelfInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", false, Enums.Language.Schinese, webClient.WebCookie);
             var QueryInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", userCookies: webClient.WebCookie);
