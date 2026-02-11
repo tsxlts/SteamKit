@@ -109,7 +109,7 @@ namespace GameClient
             Console.WriteLine("请选择操作：\n" +
                 $"1、【检视】\t 2、【CS2Client】\t 3、【Dota2Client】\t 4、【TF2Client】\n" +
                 $"5、【UnifiedGameClient】\n" +
-                $"9、【SteamKit】t 10、【SlimClient】");
+                $"9、【SteamKit】\t 10、【SlimClient】");
             var action = Console.ReadLine();
             switch (action)
             {

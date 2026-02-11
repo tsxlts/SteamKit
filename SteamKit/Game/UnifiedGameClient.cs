@@ -18,8 +18,6 @@ namespace SteamKit.Game
         /// <returns></returns>
         public delegate Task<LoginGameResponse> LoadingGameEvent(GameClient client, CancellationToken cancellationToken);
 
-        private readonly LoginGameJob loginGameJob;
-
         private LoadingGameEvent loadingGameEvent;
 
         /// <summary>
@@ -38,24 +36,7 @@ namespace SteamKit.Game
         /// <param name="buildId"></param>
         public UnifiedGameClient(uint appId, uint version, uint buildId) : base(appId: appId, version: version, buildId: buildId)
         {
-            loginGameJob = new LoginGameJob();
-
             loadingGameEvent = DefaultLoadingGameAsync;
-
-            RegistCallback(EMsg.ClientPlayingSessionState, (sender, response) =>
-            {
-                var msg = new ServerProtoBufMsg<CMsgClientPlayingSessionState>(response.PacketResult!);
-                if (msg.Body.playing_app == this.AppId && !msg.Body.playing_blocked)
-                {
-                    loginGameJob.Task?.SetResult(new LoginGameResponse
-                    {
-                        Success = true,
-                        Error = null
-                    });
-                }
-
-                return Task.CompletedTask;
-            });
         }
 
         /// <summary>
@@ -73,6 +54,16 @@ namespace SteamKit.Game
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        protected override Task<LoginGameResponse> LoginGameInternalAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult(new LoginGameResponse { Success = true });
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         protected override Task<LoginGameResponse> LoadingGameInternalAsync(CancellationToken cancellationToken)
         {
@@ -83,10 +74,24 @@ namespace SteamKit.Game
         {
             var tcs = new TaskCompletionSource<LoginGameResponse>();
 
-            AsyncEventHandler<GCMessageCallback> handler = (sender, response) =>
+            AsyncEventHandler<MessageCallback> handler = (sender, response) =>
+            {
+                var msg = new ServerProtoBufMsg<CMsgClientPlayingSessionState>(response.PacketResult!);
+                if (msg.Body.playing_app == this.AppId && !msg.Body.playing_blocked)
+                {
+                    tcs.TrySetResult(new LoginGameResponse
+                    {
+                        Success = true,
+                        Error = null
+                    });
+                }
+
+                return Task.CompletedTask;
+            };
+            AsyncEventHandler<GCMessageCallback> gcHandler = (sender, response) =>
             {
                 var msg = new Client.Internal.Msg.GCServerProtoBufMsg(response.PacketResult!.MsgType, response.PacketResult.AppId, response.PacketResult.GetData());
-                tcs.SetResult(new LoginGameResponse
+                tcs.TrySetResult(new LoginGameResponse
                 {
                     Success = true,
                     Error = null
@@ -97,7 +102,10 @@ namespace SteamKit.Game
 
             try
             {
-                RegistGCCallback(EGCUnifiedMsg.ClientWelcome, handler);
+                RegistCallback(EMsg.ClientPlayingSessionState, handler);
+                RegistGCCallback(EGCUnifiedMsg.ClientWelcome, gcHandler);
+
+                await base.LoginGameInternalAsync(cancellationToken).ConfigureAwait(false);
 
                 TimerCallback timerCallback = (obj) =>
                 {
@@ -105,7 +113,7 @@ namespace SteamKit.Game
                     {
                         if (!this.IsConnected())
                         {
-                            tcs.SetResult(new LoginGameResponse
+                            tcs.TrySetResult(new LoginGameResponse
                             {
                                 Success = false,
                                 Error = $"Game loading failed, Connection dropped"
@@ -134,8 +142,10 @@ namespace SteamKit.Game
             }
             finally
             {
-                RemoveGCCallback(EGCUnifiedMsg.ClientWelcome, handler);
+                RemoveCallback(EMsg.ClientPlayingSessionState, handler);
+                RemoveGCCallback(EGCUnifiedMsg.ClientWelcome, gcHandler);
             }
+
         }
     }
 }
