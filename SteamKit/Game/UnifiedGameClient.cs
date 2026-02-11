@@ -1,5 +1,4 @@
-﻿using SteamKit.Client.Internal.Model;
-using SteamKit.Client.Model;
+﻿using SteamKit.Client.Model;
 using SteamKit.Client.Model.GC;
 using SteamKit.Client.Model.Proto;
 
