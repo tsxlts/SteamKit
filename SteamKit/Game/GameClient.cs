@@ -102,28 +102,6 @@ namespace SteamKit.Game
         }
 
         /// <summary>
-        /// 连接并登录服务器
-        /// </summary>
-        /// <param name="cancellationToken">CancellationToken</param>
-        /// <returns></returns>
-        public override async Task<ClientResult<bool>> ConnectAsync(CancellationToken cancellationToken = default)
-        {
-            return await ConnectAsync(null, null, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// 连接并登录Steam服务器
-        /// </summary>
-        /// <param name="endPoint">服务器节点</param>
-        /// <param name="protocol">ProtocolType</param>
-        /// <param name="cancellationToken">CancellationToken</param>
-        /// <returns></returns>
-        public override async Task<ClientResult<bool>> ConnectAsync(EndPoint? endPoint, ProtocolTypes? protocol, CancellationToken cancellationToken = default)
-        {
-            return await base.ConnectAsync(endPoint, protocol, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
         /// 登录游戏
         /// </summary>
         /// <param name="cancellationToken">CancellationToken</param>
