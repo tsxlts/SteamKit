@@ -47,16 +47,7 @@ namespace SteamKit.Client.Internal
         /// <param name="logger"></param>
         public Task InvokeAsync(object? sender, T param, ILogger? logger)
         {
-            try
-            {
-                return Callback.Invoke(sender, param);
-            }
-            catch (Exception ex)
-            {
-                logger?.LogException(ex, null);
-
-                return Task.FromException(ex);
-            }
+            return CallbackInvoker.CallbackInvokeAsync(Callback, sender, param, logger);
         }
 
         /// <summary>
@@ -67,14 +58,7 @@ namespace SteamKit.Client.Internal
         /// <param name="logger"></param>
         public void Invoke(object? sender, T param, ILogger? logger)
         {
-            try
-            {
-                Callback.Invoke(sender, param).ConfigureAwait(false).GetAwaiter().GetResult();
-            }
-            catch (Exception ex)
-            {
-                logger?.LogException(ex, null);
-            }
+            CallbackInvoker.CallbackInvoke(Callback, sender, param, logger);
         }
 
         private static Task WithoutCallback(object? sender, T e)
