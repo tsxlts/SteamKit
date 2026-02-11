@@ -94,18 +94,18 @@ namespace GameClient
 
             await webClient.LoginAsync(token);
 
-            var QueryAssetClassInfoAsync = await SteamApi.QueryAssetClassInfoAsync(null, webClient.WebApiToken, "730", [new QueryAssetClassInfoParameter { ClassId = 7993041777, InstanceId = 7201925669 }]);
-            var QueryInventoryHistoryAsync = await SteamApi.QueryInventoryHistoryAsync(webClient.SteamId, webClient.SessionId, ["730"], null, Enums.Language.Schinese, webClient.WebCookie);
-            var QuetyListingsAsync = await SteamApi.QueryListingsAsync(0, 10, webClient.WebCookie);
-            var QueryMarketListingsAsync = await SteamApi.QueryMarketListingsAsync("730", "Dual Berettas | Flora Carnivora (Well-Worn)", 0, 10);
-            var QuerySelfInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", false, Enums.Language.Schinese, webClient.WebCookie);
-            var QueryInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", userCookies: webClient.WebCookie);
-            var QueryOffersAsync = await SteamApi.QueryOffersAsync(webClient.WebApiToken, sentOffer: true, receivedOffer: true, onlyActive: false);
-            var offer = QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == TradeOfferState.Active);
-            offer = offer ?? QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == TradeOfferState.Accepted);
-            var QueryOfferAsync = await SteamApi.QueryOfferAsync(webClient.WebApiToken, offer.TradeOfferId);
-            offer = QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == TradeOfferState.Accepted);
-            var QueryTradeStatusAsync = await SteamApi.QueryTradeStatusAsync(webClient.WebApiToken, offer?.TradeId);
+            //var QueryAssetClassInfoAsync = await SteamApi.QueryAssetClassInfoAsync(null, webClient.WebApiToken, "730", [new QueryAssetClassInfoParameter { ClassId = 7993041777, InstanceId = 7201925669 }]);
+            //var QueryInventoryHistoryAsync = await SteamApi.QueryInventoryHistoryAsync(webClient.SteamId, webClient.SessionId, ["730"], null, Enums.Language.Schinese, webClient.WebCookie);
+            //var QuetyListingsAsync = await SteamApi.QueryListingsAsync(0, 10, webClient.WebCookie);
+            //var QueryMarketListingsAsync = await SteamApi.QueryMarketListingsAsync("730", "Dual Berettas | Flora Carnivora (Well-Worn)", 0, 10);
+            //var QuerySelfInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", false, Enums.Language.Schinese, webClient.WebCookie);
+            //var QueryInventoryAsync = await SteamApi.QueryInventoryAsync(webClient.SteamId, "730", "2", userCookies: webClient.WebCookie);
+            //var QueryOffersAsync = await SteamApi.QueryOffersAsync(webClient.WebApiToken, sentOffer: true, receivedOffer: true, onlyActive: false);
+            //var offer = QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == TradeOfferState.Active);
+            //offer = offer ?? QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == TradeOfferState.Accepted);
+            //var QueryOfferAsync = await SteamApi.QueryOfferAsync(webClient.WebApiToken, offer.TradeOfferId);
+            //offer = QueryOffersAsync.Body?.TradeOffersSent?.FirstOrDefault(c => c.TradeOfferState == TradeOfferState.Accepted);
+            //var QueryTradeStatusAsync = await SteamApi.QueryTradeStatusAsync(webClient.WebApiToken, offer?.TradeId);
 
             Console.WriteLine("请选择操作：\n" +
                 $"1、【检视】\t 2、【CS2Client】\t 3、【Dota2Client】\t 4、【TF2Client】\n" +

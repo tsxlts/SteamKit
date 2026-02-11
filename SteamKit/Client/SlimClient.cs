@@ -165,7 +165,10 @@ namespace SteamKit.Client
 
                 await InternalConnectAsync(endPoint, protocol, cancellationToken).ConfigureAwait(false);
 
-                return await tcs.Task.ConfigureAwait(false);
+                using (var timeoutToken = new CancellationTokenSource(60 * 1000))
+                {
+                    return await tcs.Task.WaitAsync(timeoutToken.Token).ConfigureAwait(false);
+                }
             }
         }
 
