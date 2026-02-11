@@ -20,7 +20,6 @@ using SteamKit.Game;
 using SteamKit.Game.CS2;
 using SteamKit.Game.Dota2;
 using SteamKit.Game.TF2;
-using SteamKit.Model;
 using SteamKit.Types;
 using SteamKit.WebClient;
 using static SteamKit.Builder.ProxyBulider;
@@ -278,7 +277,7 @@ namespace GameClient
                             var game = ownedGames.Result?.games?.FirstOrDefault(c => c.appid == client.AppId);
                             if (game == null)
                             {
-                                return new LoginGameResponse { Success = false, Error = "游戏库未拥有游戏" };
+                                //return new LoginGameResponse { Success = false, Error = "游戏库未拥有游戏" };
                             }
 
                             return new LoginGameResponse { Success = true, Error = null };

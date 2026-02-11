@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Text;
+﻿using System.Text;
 using SteamKit.Client;
 using SteamKit.Client.Hanlders;
 using SteamKit.Client.Internal;

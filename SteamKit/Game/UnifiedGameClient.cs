@@ -56,17 +56,6 @@ namespace SteamKit.Game
 
                 return Task.CompletedTask;
             });
-            RegistGCCallback(EGCUnifiedMsg.ClientWelcome, (sender, response) =>
-            {
-                var msg = new Client.Internal.Msg.GCServerProtoBufMsg(response.PacketResult!.MsgType, response.PacketResult.AppId, response.PacketResult.GetData());
-                loginGameJob.Task?.SetResult(new LoginGameResponse
-                {
-                    Success = true,
-                    Error = null
-                });
-
-                return Task.CompletedTask;
-            });
         }
 
         /// <summary>
@@ -92,9 +81,23 @@ namespace SteamKit.Game
 
         private async Task<LoginGameResponse> DefaultLoadingGameAsync(GameClient client, CancellationToken cancellationToken)
         {
-            using (await loginGameJob.Lock.LockAsync(cancellationToken))
+            var tcs = new TaskCompletionSource<LoginGameResponse>();
+
+            AsyncEventHandler<GCMessageCallback> handler = (sender, response) =>
             {
-                loginGameJob.Task = new AsyncJob<LoginGameResponse>(AppId, cancellationToken);
+                var msg = new Client.Internal.Msg.GCServerProtoBufMsg(response.PacketResult!.MsgType, response.PacketResult.AppId, response.PacketResult.GetData());
+                tcs.SetResult(new LoginGameResponse
+                {
+                    Success = true,
+                    Error = null
+                });
+
+                return Task.CompletedTask;
+            };
+
+            try
+            {
+                RegistGCCallback(EGCUnifiedMsg.ClientWelcome, handler);
 
                 TimerCallback timerCallback = (obj) =>
                 {
@@ -102,7 +105,7 @@ namespace SteamKit.Game
                     {
                         if (!this.IsConnected())
                         {
-                            loginGameJob.Task?.SetResult(new LoginGameResponse
+                            tcs.SetResult(new LoginGameResponse
                             {
                                 Success = false,
                                 Error = $"Game loading failed, Connection dropped"
@@ -121,13 +124,17 @@ namespace SteamKit.Game
                 };
                 using (var timer = new Timer(timerCallback, this, TimeSpan.FromSeconds(0), TimeSpan.FromMilliseconds(1000)))
                 {
-                    var result = await loginGameJob.Task.ConfigureAwait(false);
+                    var result = await tcs.Task.WaitAsync(cancellationToken).ConfigureAwait(false);
                     return result ?? new LoginGameResponse
                     {
                         Success = false,
                         Error = "Unknown",
                     };
                 }
+            }
+            finally
+            {
+                RemoveGCCallback(EGCUnifiedMsg.ClientWelcome, handler);
             }
         }
     }
