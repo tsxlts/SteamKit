@@ -34,7 +34,8 @@ namespace SteamKit.Client.Internal
                 throw new ArgumentNullException(nameof(callback));
             }
 
-            Callback = callback;
+            Callback = WithoutCallback;
+            Callback += callback;
             return this;
         }
 
