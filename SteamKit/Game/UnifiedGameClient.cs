@@ -13,36 +13,36 @@ namespace SteamKit.Game
         /// <param name="client"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public delegate Task<LoginGameResponse> LoadingGameEvent(GameClient client, CancellationToken cancellationToken);
+        public delegate Task<LoginGameResponse> LoadingGameHanlder(GameClient client, CancellationToken cancellationToken);
 
-        private LoadingGameEvent loadingGameEvent;
+        private LoadingGameHanlder loadingGameHanlder;
 
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="appId"></param>
+        /// <param name="appId">游戏Id</param>
         public UnifiedGameClient(uint appId) : this(appId: appId, version: 0, buildId: 0)
         {
         }
 
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="appId"></param>
-        /// <param name="version"></param>
-        /// <param name="buildId"></param>
+        /// <param name="appId">游戏Id</param>
+        /// <param name="version">游戏版本</param>
+        /// <param name="buildId">生成版本Id</param>
         public UnifiedGameClient(uint appId, uint version, uint buildId) : base(appId: appId, version: version, buildId: buildId)
         {
-            loadingGameEvent = DefaultLoadingGameAsync;
+            loadingGameHanlder = DefaultLoadingGameAsync;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="event"></param>
-        public UnifiedGameClient WithLoadingGame(LoadingGameEvent @event)
+        public UnifiedGameClient WithLoadingGame(LoadingGameHanlder @event)
         {
-            loadingGameEvent = @event;
+            loadingGameHanlder = @event;
             return this;
         }
 
@@ -54,7 +54,7 @@ namespace SteamKit.Game
         /// <exception cref="NotImplementedException"></exception>
         protected override Task<LoginGameResponse> LoadingGameInternalAsync(CancellationToken cancellationToken)
         {
-            return loadingGameEvent.Invoke(this, cancellationToken);
+            return loadingGameHanlder.Invoke(this, cancellationToken);
         }
 
         private Task<LoginGameResponse> DefaultLoadingGameAsync(GameClient client, CancellationToken cancellationToken)

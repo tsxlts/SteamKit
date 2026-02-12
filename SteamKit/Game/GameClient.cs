@@ -35,11 +35,11 @@ namespace SteamKit.Game
         private ulong currentSequential = 0;
 
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="appId"></param>
-        /// <param name="version"></param>
-        /// <param name="buildId"></param>
+        /// <param name="appId">游戏Id</param>
+        /// <param name="version">游戏版本</param>
+        /// <param name="buildId">生成版本Id</param>
         public GameClient(uint appId, uint version, uint buildId)
         {
             this.appId = appId;
