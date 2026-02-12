@@ -31,7 +31,7 @@ namespace GameClient.Factory
             };
         }
 
-        public class Socks5SocketClient : Socket, IAsyncConnect
+        public class Socks5SocketClient : Socket
         {
             private readonly EndPoint _proxyEndPoint;
             private readonly string? _username;
@@ -45,7 +45,7 @@ namespace GameClient.Factory
                 _password = password;
             }
 
-            async ValueTask IAsyncConnect.ConnectAsync(EndPoint endPoint, CancellationToken cancellationToken)
+            public new async ValueTask ConnectAsync(EndPoint endPoint, CancellationToken cancellationToken)
             {
                 byte atyp = 0;
                 byte[] addrBytes = [];
