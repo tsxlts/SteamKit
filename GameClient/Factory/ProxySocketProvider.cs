@@ -25,7 +25,10 @@ namespace GameClient.Factory
 
         public ClientWebSocket GetWebSocket()
         {
-            return new ClientWebSocket();
+            return new ClientWebSocket()
+            {
+                Options = { Proxy = null }
+            };
         }
 
         public class Socks5SocketClient : Socket, IAsyncConnect
