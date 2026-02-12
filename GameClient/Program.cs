@@ -290,6 +290,8 @@ namespace GameClient
                             return Task.CompletedTask;
                         });
 
+                        var gcHandler = client.GetHandler<SteamGameCoordinator>();
+
                         var connect = await client.ConnectAsync();
                         if (!connect.Result)
                         {
@@ -309,6 +311,8 @@ namespace GameClient
                         }
 
                         await client.WaitInitAsync();
+
+                        await Task.Delay(2000);
                     }
                     break;
 
