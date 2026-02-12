@@ -350,55 +350,75 @@ namespace SteamKit.Game
         /// <returns></returns>
         protected virtual async Task<LoginGameResponse> LoginGameInternalAsync(CancellationToken cancellationToken)
         {
-            /*
-            var playGame = new ClientProtoBufMsg<CMsgClientGamesPlayed>(EMsg.ClientGamesPlayed);
-            playGame.Body.recent_reauthentication = Reauthentication;
-            playGame.Body.games_played.Add(new CMsgClientGamesPlayed.GamePlayed
+            var tcs = new TaskCompletionSource<LoginGameResponse>();
+            AsyncEventHandler<MessageCallback> handler = (sender, response) =>
             {
-                game_id = AppId,
-            });
-            await SendAsync(playGame);
-            */
+                var msg = new ServerProtoBufMsg<CMsgClientPlayingSessionState>(response.PacketResult!);
+                if (msg.Body.playing_app == this.AppId && !msg.Body.playing_blocked)
+                {
+                    tcs.TrySetResult(new LoginGameResponse
+                    {
+                        Success = true,
+                        Error = null
+                    });
+                }
 
-            int pid = Environment.ProcessId;
-            int ppid = Math.Max(ProcessingHelper.GetParentProcessId(pid), 0);
+                return Task.CompletedTask;
+            };
 
-            Logger?.LogDebug($"ProcessId: {pid}");
-            Logger?.LogInformation($"ProcessId: {pid}");
-            Logger?.LogDebug($"ParentProcessId: {ppid}");
-            Logger?.LogInformation($"ParentProcessId: {ppid}");
-
-            uint process_id = (uint)pid;
-            uint process_id_parent = (uint)ppid; //Steam进程Id
-            uint launch_source = this.LaunchSource;
-            uint game_build_id = this.BuildId;
-            uint owner_id = (uint)(this.SteamId!.Value - Extensions.DefaultSteamId);
-
-            var playGame = new ClientProtoBufMsg<CMsgClientGamesPlayed>(EMsg.ClientGamesPlayedWithDataBlob);
-            playGame.Body.client_os_type = (uint)this.OSType;
-            playGame.Body.cloud_gaming_platform = 0;
-            playGame.Body.recent_reauthentication = false;
-            playGame.Body.games_played.Add(new CMsgClientGamesPlayed.GamePlayed
+            try
             {
-                game_id = AppId,
-                process_id = process_id,
-                launch_source = launch_source,
-                game_build_id = game_build_id,
-                owner_id = owner_id,
+                RegistCallback(EMsg.ClientPlayingSessionState, handler);
 
-                is_secure = false,
-                steam_id_gs = 0,
-                game_port = 0,
-                game_extra_info = "",
-                game_flags = 0,
-                game_ip_address = null,
-                game_os_platform = -1,
-                beta_name = "",
-                dlc_context = 0,
-                launch_option_type = 0,
-                streaming_provider_id = 0,
+                /*
+                var playGame = new ClientProtoBufMsg<CMsgClientGamesPlayed>(EMsg.ClientGamesPlayed);
+                playGame.Body.recent_reauthentication = Reauthentication;
+                playGame.Body.games_played.Add(new CMsgClientGamesPlayed.GamePlayed
+                {
+                    game_id = AppId,
+                });
+                await SendAsync(playGame);
+                */
 
-                process_id_list ={
+                int pid = Environment.ProcessId;
+                int ppid = Math.Max(ProcessingHelper.GetParentProcessId(pid), 0);
+
+                Logger?.LogDebug($"ProcessId: {pid}");
+                Logger?.LogInformation($"ProcessId: {pid}");
+                Logger?.LogDebug($"ParentProcessId: {ppid}");
+                Logger?.LogInformation($"ParentProcessId: {ppid}");
+
+                uint process_id = (uint)pid;
+                uint process_id_parent = (uint)ppid; //Steam进程Id
+                uint launch_source = this.LaunchSource;
+                uint game_build_id = this.BuildId;
+                uint owner_id = (uint)(this.SteamId!.Value - Extensions.DefaultSteamId);
+
+                var playGame = new ClientProtoBufMsg<CMsgClientGamesPlayed>(EMsg.ClientGamesPlayedWithDataBlob);
+                playGame.Body.client_os_type = (uint)this.OSType;
+                playGame.Body.cloud_gaming_platform = 0;
+                playGame.Body.recent_reauthentication = false;
+                playGame.Body.games_played.Add(new CMsgClientGamesPlayed.GamePlayed
+                {
+                    game_id = AppId,
+                    process_id = process_id,
+                    launch_source = launch_source,
+                    game_build_id = game_build_id,
+                    owner_id = owner_id,
+
+                    is_secure = false,
+                    steam_id_gs = 0,
+                    game_port = 0,
+                    game_extra_info = "",
+                    game_flags = 0,
+                    game_ip_address = null,
+                    game_os_platform = -1,
+                    beta_name = "",
+                    dlc_context = 0,
+                    launch_option_type = 0,
+                    streaming_provider_id = 0,
+
+                    process_id_list ={
                     new CMsgClientGamesPlayed.ProcessInfo
                     {
                         process_id = process_id,
@@ -406,14 +426,20 @@ namespace SteamKit.Game
                         parent_is_steam = true,
                     }
                 }
-            });
-            await SendAsync(playGame).ConfigureAwait(false);
+                });
+                await SendAsync(playGame).ConfigureAwait(false);
 
-            return new LoginGameResponse
+                var result = await tcs.Task.WaitAsync(cancellationToken).ConfigureAwait(false);
+                return result ?? new LoginGameResponse
+                {
+                    Success = false,
+                    Error = "Unknown",
+                };
+            }
+            finally
             {
-                Success = true,
-                Error = null,
-            };
+                RemoveCallback(EMsg.ClientPlayingSessionState, handler);
+            }
         }
 
         /// <summary>
