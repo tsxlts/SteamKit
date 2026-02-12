@@ -39,10 +39,10 @@ namespace SteamKit.Game
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="event"></param>
-        public UnifiedGameClient WithLoadingGame(LoadingGameHanlder @event)
+        /// <param name="handler"></param>
+        public UnifiedGameClient WithLoadingGame(LoadingGameHanlder handler)
         {
-            loadingGameHanlder = @event;
+            loadingGameHanlder = handler;
             return this;
         }
 
